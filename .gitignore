@@ -112,3 +112,11 @@ typings/
 
 # next.js build output
 .next
+
+# laravel
+vendor/
+public/storage/
+Homestead.yaml 
+Homestead.json 
+.env
+
