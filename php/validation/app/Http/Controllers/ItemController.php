@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Item;
 
 class ItemController extends Controller
 {
@@ -15,7 +16,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+      $items = Item::all();
+
+      return view('itemIndex', compact('items'));
     }
 
     /**
@@ -25,7 +28,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+      return view('itemForm');
     }
 
     /**
@@ -36,7 +39,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request, [
+        'name' => 'required|max:10',
+        'price' => 'required',
+      ]);
+
+      Item::create([
+        'name' => $request->get('name'),
+        'price' => $request->get('price'),
+      ]);
+
+      return back()->with('success', 'You have just created one item');
     }
 
     /**
