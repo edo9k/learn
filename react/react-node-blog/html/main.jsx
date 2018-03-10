@@ -61,6 +61,47 @@ class Signin extends React.Component{
 }
 
 class Signup extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.handleNameChange     = this.handleNameChange.bind(this);
+    this.handleEmailChange    = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+
+    this.state = {
+      name:     '',
+      email:    '',
+      password: ''
+    }
+  }
+
+  handleNameChange(e){
+    this.setState({name:e.target.value})
+  }
+
+  handleEmailChange(e){
+    this.setState({email:e.target.value})
+  }
+
+  handlePasswordChange(e){
+    this.setState({password:e.target.value})
+  }
+
+  signUp(){
+    axios.post('/signup', {
+      name    : this.state.name,
+      email   : this.state.email,
+      password: this.state.password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+
   render() {
     return (
       <div>
