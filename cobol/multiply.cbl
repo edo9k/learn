@@ -1,0 +1,52 @@
+       IDENTIFICATION DIVISION.
+       AUTHOR. edo9k.
+       PROGRAM-ID. Multipl. 
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 NUMBER1 PIC 99. 
+       01 NUMBER2 PIC 99.
+       01 NUMBER3 PIC 99.
+       01 NUMBER4 PIC 99.
+       01 RESULT1 PIC 9(4).
+       01 RESULT1F PIC Z(10).Z(2).
+       01 RESULT2  PIC 99999.
+       01 RESULT2F PIC Z(10).Z(2).
+       01 TOTAL    PIC 9(9).
+       01 FORMATTED PIC Z(10).Z(2).
+
+
+       PROCEDURE DIVISION.
+
+       CALC1.
+              DISPLAY "ENTER THE FIRST NUMBER: ".
+              ACCEPT NUMBER1. 
+              DISPLAY "ENTER THE SECOND NUMBER: ".
+              ACCEPT NUMBER2.
+              MULTIPLY NUMBER1 BY NUMBER2 GIVING RESULT1.
+              DISPLAY "DISPLAYING FIRST RESULT!".
+              MOVE RESULT1 TO RESULT1F.
+              DISPLAY RESULT1F.
+
+       CALC2.
+              DISPLAY "ENTER THE THIRD NUMBER: ".
+              ACCEPT NUMBER3.
+              DISPLAY "ENTER THE FOURTH NUMBER: ".
+              ACCEPT NUMBER4.
+              MULTIPLY NUMBER3 BY NUMBER4 GIVING RESULT2.
+              DISPLAY "DISPLAYING SECOND RESULT!".
+              MOVE RESULT2 TO RESULT2F.
+              DISPLAY RESULT2F.
+              ADD RESULT1, RESULT2 TO TOTAL.
+              MOVE TOTAL TO FORMATTED.
+              DISPLAY "ENTERED VALUES: ".
+              DISPLAY "----------------".
+              DISPLAY "FIRST RESULT:  ", RESULT1F.
+              DISPLAY "SECOND RESULT: ", RESULT2F.
+              DISPLAY "RESULTS ADDED TOGETHER: ", FORMATTED.
+
+       STOP RUN.
+
+
+       
+
