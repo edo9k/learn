@@ -120,3 +120,5 @@ Homestead.yaml
 Homestead.json 
 .env
 
+# python
+*.pyc 
