@@ -1,0 +1,32 @@
+{
+  "name": "react-node-blog",
+  "version": "1.0.0",
+  "description": "This is app is the result of a tutorial I did to learn a little bit more about ReactJS and a bit o Node too.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edo9k/learn.git"
+  },
+  "keywords": [
+    "Learning",
+    "Repository",
+    "React",
+    "Node",
+    "JS"
+  ],
+  "author": "Eduardo França",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/edo9k/learn/issues"
+  },
+  "homepage": "https://github.com/edo9k/learn#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.0.4"
+  }
+}
