@@ -1,0 +1,9 @@
+
+The file hello.c is a hello-world example module for apache. 
+
+# to compíle and install the apache module
+sudo apxs -i -a -c hello.c
+
+# then restart apache
+systemctl restart apache2
+
