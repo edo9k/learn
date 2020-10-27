@@ -1,0 +1,3 @@
+to compile this you need to have GTK 2.0 installed.
+
+gcc `pkg-config gtk+-2.0 --cflags` main.c -o hello_gtk `pkg-config gtk+-2.0 --libs`
