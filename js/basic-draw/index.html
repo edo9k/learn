@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BASIC DRAW</title>
+    <style>
+      html, body {
+        margin: 0px;
+      }
+
+      canvas {
+        display: block;
+        background-color: black;
+      }
+
+      .column {
+        float: left;
+        width: 50%;
+      }
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      #code {
+        width: 100%;
+        height: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row">
+
+      <!-- drawing area -->
+      <div class="column">
+        <canvas id="output"></canvas>
+      </div>
+
+      <!-- toolbox -->
+      <div class="column">
+        <ul>
+          <li><a id="move" href="#">MOVE</a></li>
+          <li><a id="draw" href="#">DRAW</a></li>
+        </ul>
+        
+      </div>   
+    </div>
+
+    <div class="row">
+      <!-- BASIC output -->
+      <div class="column">
+        <textarea id="code">Generated code...</textarea>
+      </div>
+
+      <!-- output options -->
+      <div class="column">
+        <ul>
+          <li>toggle short keywords</li>
+          <li>something else?</li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
