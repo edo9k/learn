@@ -1,0 +1,14 @@
+
+# I'm too dumb to write a decent makefile and it's 2am already
+# TODO -> check the ld-link options, and nasm...
+#   ...does it cross compile? can fasm xcompile from *nix 2 kolibri?
+
+; compile
+nasm -f elf file.asm
+
+; link
+ld -m elf_i386 -s -o file file.o
+
+; to run... you know
+./file
+
