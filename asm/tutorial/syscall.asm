@@ -3,7 +3,7 @@
 section .data
   message1 db 'please enter a number: '
   message1len equ $ - message1
-  message2 db 'you have entere: '
+  message2 db 'you have entered: '
   message2len equ $ - message2
 
 ; uninitialized data

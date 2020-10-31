@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$1" != "" ] && [ -f $1 ]; then
+
+  nasm -f elf $1 && \
+  ld -m elf_i386 -s -o ${1%%.*} ${1%%.*}.o && \
+  ./${1%%.*}
+
+  # cleanup, won't matter since there are tiny files
+  test -f ./${1%%.*}.o  && rm ./${1%%.*}.o
+  test -f ./${1%%.*}    && rm ./${1%%.*}
+
+else 
+  echo "some shit probably happened."
+fi
+
+# to do it the 'artesanal' way
+#
+# nasm -f elf file.asm               ; compile
+# ld -m elf_i386 -s -o file file.o   ; link
+# ./file                             # run
+
