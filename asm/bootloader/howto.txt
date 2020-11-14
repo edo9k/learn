@@ -1,0 +1,23 @@
+
+## GNU Assembler (as)
+
+# assemble
+as -o boot.o boot.s
+
+# link
+ld -o boot.bin --oformat binary -e init -o boot.bin boot.o
+
+# run on qemu
+qemu-system-x86_64 boot.bin
+
+## NASM
+
+# assmemble/link 
+nasm -o boot.bin boot.asm
+
+# run
+qemu-system-x86_64 boot.bin
+
+# from "Writing an x86 Hello-World Bootload with assembly
+# by Martin Splitt
+# on Medium
