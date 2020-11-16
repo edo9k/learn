@@ -41,6 +41,23 @@ sprint:
   pop edx
   ret
 
+;
+; void sprint_ln(string text)
+; print with line feed
+sprintLF:
+  call sprint
+
+  push  eax
+  mov   eax, 0ah
+  push  eax
+  mov   eax, esp
+  call  sprint
+  pop   eax
+  pop   eax
+  ret
+
+
+;
 ; void exit()
 ; quits program zero status (no errors)
 quit:
