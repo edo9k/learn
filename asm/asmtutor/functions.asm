@@ -1,5 +1,54 @@
 ;
 
+;
+; void iprint(integer number)
+; prints integer
+iprint:
+  push  eax
+  push  ecx
+  push  edx
+  push  esi
+  mov   ecx, 0
+
+divide_loop:
+  inc ecx
+  mov edx, 0
+  mov esi, 10
+  idiv esi
+  add edx, 48
+  push edx
+  cmp eax, 0
+  jnz divide_loop
+
+print_loop:
+  dec ecx
+  mov eax, esp
+  call sprint
+  pop eax
+  cmp ecx, 0
+  jnz print_loop
+
+  pop esi
+  pop edx
+  pop ecx
+  ret
+
+;
+; void iprintLF(integer number)
+; integer printing function w/ linefeed
+iprintLF:
+  call iprint
+
+  push eax
+  mov eax, 0ah
+  push eax
+  mov eax, esp
+  call sprint
+  pop eax
+  pop eax
+  ret
+  
+  
 ; int slen(string text)
 ; calculates string length
 slen:
