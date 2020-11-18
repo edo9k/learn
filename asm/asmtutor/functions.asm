@@ -31,6 +31,7 @@ print_loop:
   pop esi
   pop edx
   pop ecx
+  pop eax
   ret
 
 ;
