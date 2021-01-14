@@ -15,7 +15,33 @@ run_parser p str = case parse p "" str of
   Right val -> val
 
 otag t = "<"++t++">"
-ctag t =
+ctag t = "</"++t++">"
+tag t v = concat [otag t, v, ctag t]
+
+tagAttrs t attrs v = contat [otag (unwords $ [t]++(map (\(k,v) -> concat [k, "=\""]) attrs)), v, ctag t]
+
+joinNL ls = intercalate "\n" ls
+
+showParser :: Parser String
+showParser = 
+  list_parser <|> -- [ ... ]
+  tuple_parser <|> -- ( ... )
+  try record_parser <|> -- MkRec { ... }
+  adt_parser <|> -- MkADT ...
+  number <|> -- signed integer
+  quoted_stirng <?> "Parse error"
+
+quoted_string = do
+  s <- stringLiteral
+  return $ "\""++s++"\""
+
+number = do
+  n <- integer
+  return $ show n 
+
+
+
+
 
 
 lexer = P.makeTokenParser emptyDef
