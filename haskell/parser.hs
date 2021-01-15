@@ -40,9 +40,29 @@ number = do
   return $ show n 
 
 
+list_parser = do
+  ls <- brackets $ commaSep showParser
+  return $ tag "list" $ joinNL $ map (tag "list-elt") ls
 
+tuple_parser = do
+  ls <- brackets $ commaSep showParser
+  return $ tag "tuple" $ unwords $ map (tag "tuple-elt") ls
 
+record_parser = do
+  ti <- type_identifier
+  return $ tag "adt" ti
 
+kvparser = do
+  k <- identifier 
+  symbol "="
+  t <- showParser
+  return $ tagAttrs "elt" [("key", k)] t
+
+type_identifier = do
+  fst <- oneOf ['A' .. 'Z']
+  rest <- many alphaNum
+  whiteSpace
+  return $ fst:rest
 
 lexer = P.makeTokenParser emptyDef
 
@@ -55,5 +75,4 @@ symbol          = P.symbol        lexer
 identifier      = P.identifier    lexer
 integer         = P.integer       lexer
 stringLiteral   = P.stringLiteral lexer
-
 
