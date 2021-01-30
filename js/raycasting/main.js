@@ -116,6 +116,11 @@ class Ray {
     let xstep, ystep
   
     // horizontal ray-grid intersection
+    let foundHorzWallHit = false
+    let wallHitX = 0
+    let wallHitY = 0
+    
+    // find y-coordinate of closest horizontal grid interscetion
     yintercept = Math.floor(player.y / TILE_SIZE) * TILE_SIZE
     yintercept += this.isRayFacingDown ? TILE_SIZE : 0
 
@@ -130,6 +135,24 @@ class Ray {
     xstep *= this.isRayFacingLeft   && xstep > 0  ? -1 : 1
     xstep *= this.isRayFacingRight  && xstep > 0  ? -1 : 1
 
+    let nextHorzTouchX = xintercept
+    let nextHorzTouchY = yintercept
+
+    if (this.isRayFacingUp) nextHorzTouchY--
+
+    // increment xstep and ysetp until we find a wall
+    while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_WIDTH 
+      && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_HEIGHT ) {
+      if (grid.hasWallAt(nextHorzTouchX, nextHorzTouchY)) {
+        foundHorzWallHit = true
+        wallHitX = nextHorzTouchX
+        wallHitY = nextHorzTouchY
+        break
+      } else {
+        nextHorzTouchX += xstep
+        nextHorzTouchY += ystep
+      }
+    }
   }
 
   render() {
