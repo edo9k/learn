@@ -4,26 +4,86 @@ import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// header
-const Header = () => (
-  <header>
-    <div className='header-wrapper'>
-      <h1>This is the header</h1>
-      <h2>and an H2 tag.</h2>
-    </div>
-  </header>
-)
 
-const CurrentDate = () => (
-  <div><date>{ (new Date()).toLocaleString() }</date></div>
-)
+class Header extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-const App = () => (
-  <div className='app'>
-    <Header />
-    <CurrentDate />
-  </div>
-)
+  render() {
+    return (
+      <header>
+        <div className='header-wrapper'>
+          <h1>Ablublue Ablublue React Something Something</h1>
+          <h2>Some other text</h2>
+          <small>2021</small>
+        </div>
+      </header>
+    )
+  }
+}
+
+
+class TechList extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const techs = 'HTML CSS Javascript PHP MySQL Haskell COBOL Assembly'.split(' ')
+    const techsFormatted = techs.map( tech => <li key={tech}>{tech}</li> )
+    return techsFormatted
+  }
+}
+
+class Main extends React.Component {
+  constructor(props) {
+    super(props) 
+  }
+
+  render() {
+    return (
+      <main>
+        <div className='main-wrapper'>
+          <p>A bunch of tech chosen for no reason at all:</p>
+          <ul>
+            <TechList />
+          </ul>
+        </div>
+      </main>
+    )
+  }
+}
+
+class Footer extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <footer>
+        <div className='footer-wrapper'>
+          <p>Copyleft 2021</p>
+        </div>
+      </footer>
+    )
+  }
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div className='app'>
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
