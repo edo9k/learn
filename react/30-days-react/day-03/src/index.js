@@ -1,85 +1,80 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+class App extends Component {
+  state = {
+    firstName: '',
+    message: '',
+    key: ''
+  }
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props)
+  handleClick = e => {
+    this.setState({
+      message: 'Welcome to the React Events example.'
+    })
+  }
+
+  handleMouseMove = e => {
+    this.setState({ message: 'mouse movement detected' })
+  }
+
+  handleChange = e => {
+    this.setState({
+      firstName: e.target.value,
+      message: e.target.value
+    })
+  }
+
+  handleKeyPress = e => {
+    this.setState({ 
+      message: `${ e.target.value } was pressed, with keycode ${ e.charCode }`
+    })
+  }
+  
+  handleBlur = e => {
+    this.setState({ message: 'input field has lost focus.' })
+  }
+
+  handleCopy = e => {
+    this.setState({ message: 'noob copying methods are not allowed.' })
   }
 
   render() {
     return (
-      <header>
-        <div className='header-wrapper'>
-          <h1>Ablublue Ablublue React Something Something</h1>
-          <h2>Some other text</h2>
-          <small>2021</small>
-        </div>
-      </header>
-    )
-  }
-}
+      <div>
+        <h1>Events example</h1>
 
+        <button onClick={this.handleClick}>Click me</button>
+        <button onMouseMove={this.handleMouseMove}>Move mouse over this button </button>
 
-class TechList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+        <p onCopy={this.handleCopy}>
+          Try to copy this text.
+        </p>
 
-  render() {
-    const techs = 'HTML CSS Javascript PHP MySQL Haskell COBOL Assembly'.split(' ')
-    const techsFormatted = techs.map( tech => <li key={tech}>{tech}</li> )
-    return techsFormatted
-  }
-}
+        <p>{this.state.message}</p>
+        <label htmlFor=''> Test for onKeyPress Event: </label>
+        <input type='text' onKeyPress={this.handleKeyPress}/>
+        <br />
+        
+        <label htmlFor=''> Test for onBlur Event: </label>
+        <input type='text' onBlur={this.handleBlur}/>
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props) 
-  }
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor='firstName'>First Name: </label>
+            <input
+              onChange={this.handleChange}
+              name='firstName'
+              value={this.state.value}/>
+          </div>
 
-  render() {
-    return (
-      <main>
-        <div className='main-wrapper'>
-          <p>A bunch of tech chosen for no reason at all:</p>
-          <ul>
-            <TechList />
-          </ul>
-        </div>
-      </main>
-    )
-  }
-}
-
-class Footer extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <footer>
-        <div className='footer-wrapper'>
-          <p>Copyleft 2021</p>
-        </div>
-      </footer>
-    )
-  }
-}
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <div className='app'>
-        <Header />
-        <Main />
-        <Footer />
+          <div>
+            <input type='submit' value='Submit'/>
+          </div>
+        </form>
       </div>
     )
   }
