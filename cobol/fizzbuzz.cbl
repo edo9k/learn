@@ -1,0 +1,28 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FIZZBUZZ.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 HOORAY PIC X(100).
+       01 FRED REDEFINES HOORAY.
+           03 HOO OCCURS 100 PIC 9(01).
+       01 WORLD.
+           03 FILLER PIC X(05) VALUE SPACES.
+           03 I PIC 9(03) VALUE 0.
+           03 FILLER PIC X(24) VALUE '    FIZZ    BUZZFIZZBUZZ'.
+       01 NURK REDEFINES WORLD.
+           03 W OCCURS 4 PIC X(08).
+       01 ORLD PIC 9(01).
+       PROCEDURE DIVISION.
+           MOVE ALL '1' TO HOORAY.
+           PERFORM VARYING I FROM 3 BY 3 UNTIL I > 100
+             ADD 1 TO HOO(I)
+           END-PERFORM.
+           PERFORM VARYING I FROM 5 BY 5 UNTIL I > 100
+             ADD 2 TO HOO(I)
+           END-PERFORM.
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 100
+             MOVE HOO(I) TO ORLD
+             DISPLAY W(ORLD)
+           END-PERFORM.
+           STOP RUN.
+
