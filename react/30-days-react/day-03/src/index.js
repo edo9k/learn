@@ -4,6 +4,35 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+class NameForm extends Component {
+  state = {
+    firstName: ''
+  }
+
+  handleChange = e => {
+    const value = e.target.value
+    this.setState({ firstName: value })
+  }
+
+  render() {
+    const firstName = this.state.firstName
+
+    return (
+      <div className='form'>
+        <label htmlFor='firstName'>First Name: </label>
+        <input
+          type='text'
+          id='firstName'
+          name='firstName'
+          placeholder='First Name'
+          value={firstName}
+          onChange={this.handleChange} />
+        <h1>{this.state.firstName}</h1>
+      </div>
+    )
+  }
+}
+
 class App extends Component {
   state = {
     firstName: '',
@@ -75,6 +104,8 @@ class App extends Component {
             <input type='submit' value='Submit'/>
           </div>
         </form>
+
+        <NameForm />
       </div>
     )
   }
