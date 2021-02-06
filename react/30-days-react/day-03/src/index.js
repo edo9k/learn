@@ -4,29 +4,112 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const Button = ({ onClick, text, style }) => {
+  return (
+    <button onClick={onClick} style={style}>
+      {text}
+    </button>
+  )
+}
+
+const buttonWithStyles = (CompParam, name = 'default') => {
+  const colors = [
+    {
+      name: 'default',
+      backgroundColor: '#e7e7e7',
+      color: '#000000'
+    },
+    {
+      name: 'react',
+      backgroundColor: '#61dbfb',
+      color: '#ffffff'
+    },
+
+    {
+      name: 'success',
+      backgroundColor: '#4caf50',
+      color: '#ffffff'
+    },
+
+    {
+      name: 'info',
+      backgroundColor: '#2196f3',
+      color: '#ffffff'
+    },
+
+    {
+      name: 'warning',
+      backgroundColor: '#ff9800',
+      color: '#ffffff'
+    },
+
+    {
+      name: 'danger',
+      backgroundColor: '#f44336',
+      color: '#ffffff'
+    },
+  ]
+
+  const { backgroundColor, color } = colors.find( c => c.name === name )
+
+  const buttonStyles = {
+    backgroundColor,
+    padding: '10px 45px',
+    border: 'none',
+    borderRadius: 3,
+    margin: 3,
+    cursor: 'pointer',
+    fontSize: '1.25rem',
+    color,
+  }
+
+  return props => {
+    return <CompParam {...props} style={buttonStyles} />
+  }
+
+}
+
+const NewButton = buttonWithStyles(Button)
+const ReactButton = buttonWithStyles(Button, 'react')
+const InfoButton = buttonWithStyles(Button, 'info')
+const SuccessButton = buttonWithStyles(Button, 'success')
+const WarningButton = buttonWithStyles(Button, 'warning')
+const DangerButton = buttonWithStyles(Button, 'danger')
+
 class App extends Component {
-  constructor(props) {
-    super(props)
-    console.log('contructor function (first to run)')
-    this.state = { firstName: '' }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps (second to run)')
-    return null
-  }
-
-  componentDidMount() {
-    console.log('componentDidMount (last to run)')
-  }
-
   render() {
-    console.log('render function (third to run)')
     return (
       <div className='App'>
-        <h1>React Component Life Cycle</h1>
+
+        <Button text='No Style' onClick={ () => alert('I am not styled yet') } />
+
+        <NewButton
+          text='Styled Button'
+          onClick={ () => alert('I am the default style') } />
+
+        <ReactButton
+          text='React'
+          onClick={ () => alert('I have react style') } />
+
+        <InfoButton
+          text='Info'
+          onClick={ () => alert('I have info style') } />
+
+        <SuccessButton
+          text='Success'
+          onClick={ () => alert('I have success style') } />
+
+        <WarningButton
+          text='Warning'
+          onClick={ () => alert('I have warning style') } />
+
+        <DangerButton
+          text='Danger'
+          onClick={ () => alert('I have danger style') } />
+ 
       </div>
     )
+
   }
 }
 
