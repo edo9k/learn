@@ -1,44 +1,114 @@
+
+// libs
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 import reportWebVitals from './reportWebVitals'
 
-import { 
-  BrowserRouter as Router, 
-  Route, Switch, 
-  NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, 
+  Route, Switch } from 'react-router-dom'
 
+// components
+import Navbar from './Navbar'
+import { Home, About, Contact, 
+  Challenges, NotFound } from './DumbComponents'
 
-const Home = props => <h1>Welcome Home</h1>
+const Country = ({ country }) => {
 
-const About = props => <h1>About us</h1>
+  const { name, flag, population, currency } = country
 
-const Contact = props => <h1>Contact us</h1>
+  return (
+    <div className='country'>
+      <div className='country_flag'>
+        <img src={flag} alt={name} style={{maxWidth: '100%'}} />
+      </div>
+      
+      <h3 className='country_name'>{name.toUpperCase()}</h3>
+      
+      <div class='country_text'>
+        <p>
+          <span>Population: </span>
+          {population}
+        </p>
+        <p>
+          <span>Currency: </span>
+          {currency}
+        </p>  
+      </div>
+    </div>
+  )
+}
 
-const Challenges = props => (
-  <div>
-    <h1>30 Days of React</h1>
-  </div>
-)
+class CountriesAxios extends Component {
+  state = {
+    data: []
+  }
 
-const NotFound = props => <h1>Page not found.</h1>
+  componentDidMount() {
+    this.fetchCountryData()
+  }
 
-const Navbar = () => (
-  <ul>  
-    <li>
-      <NavLink to='/'>Home</NavLink>
-    </li> 
-    <li>
-      <NavLink to='/about'>About</NavLink>
-    </li> 
-    <li>
-      <NavLink to='/contact'>Contact</NavLink>
-    </li> 
-    <li>
-      <NavLink to='/challenges'>Challenges</NavLink>
-    </li> 
-  </ul>
-)
+  fetchCountryData = async () => {
+    const url = 'https://restcountries.eu/rest/v2/all'
 
+    try {
+      const response = await axios.get(url)
+      const { data } = await response
+      this.setState({ data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  render () {
+    return (
+      <div className='ShowCountries'>
+        <h2>There are {this.state.data.length} countries in the API.</h2>
+        
+        <ul className='country-list'>
+          {this.state.data.map( country => (
+            <li><Country country={country} /></li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+}
+
+class CountriesFetch extends Component {
+  state = {
+    data: []
+  }
+
+  componentDidMount() {
+    this.fetchCountryData()
+  }
+
+  fetchCountryData = async () => {
+    const url = 'https://restcountries.eu/rest/v2/all'
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      this.setState({ data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  render () {
+    return (
+      <div className='ShowCountries'>
+        <h2>There are {this.state.data.length} countries in the API.</h2>
+        
+        <ul className='country-list'>
+          {this.state.data.map( country => (
+            <li><Country country={country} /></li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+}
 
 class App extends Component {
   render() {
@@ -47,10 +117,12 @@ class App extends Component {
         <div className='App'>
           <Navbar />
           <Switch>
-            <Route path='/about'      component={About}       />
-            <Route path='/contact'    component={Contact}     />
-            <Route path='/challenges' component={Challenges}  />
-            <Route exact path='/'     component={Home}        />
+            <Route path='/about'            component={About}           />
+            <Route path='/contact'          component={Contact}         />
+            <Route path='/challenges'       component={Challenges}      />
+            <Route path='/countries-fetch'  component={CountriesFetch}  />
+            <Route path='/countries-axios'  component={CountriesAxios}  />
+            <Route exact path='/'           component={Home}            />
             <Route component={NotFound} />
           </Switch>
         </div>
