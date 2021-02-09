@@ -10,6 +10,7 @@ const Navbar = () => (
     <li> <NavLink to='/challenges'>Challenges</NavLink> </li> 
     <li> <NavLink to='/countries-fetch'>Countries (fetch)</NavLink> </li> 
     <li> <NavLink to='/countries-axios'>Countries (axios)</NavLink> </li> 
+    <li> <NavLink to='/hook-count'>Counter (with Hooks)</NavLink> </li>
   </ul>
 )
 

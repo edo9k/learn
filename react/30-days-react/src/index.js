@@ -12,6 +12,7 @@ import { BrowserRouter as Router,
 import Navbar from './Navbar'
 import { Home, About, Contact, 
   Challenges, NotFound } from './DumbComponents'
+import HookCount from './HookCount'
 
 const Country = ({ country }) => {
 
@@ -122,6 +123,7 @@ class App extends Component {
             <Route path='/challenges'       component={Challenges}      />
             <Route path='/countries-fetch'  component={CountriesFetch}  />
             <Route path='/countries-axios'  component={CountriesAxios}  />
+            <Route path='/hook-count'       component={HookCount}       />
             <Route exact path='/'           component={Home}            />
             <Route component={NotFound} />
           </Switch>
