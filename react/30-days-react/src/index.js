@@ -14,6 +14,8 @@ import { Home, About, Contact,
   Challenges, NotFound } from './DumbComponents'
 import HookCount from './HookCount'
 
+import HookForm from './HookForm'
+
 const Country = ({ country }) => {
 
   const { name, flag, population, currency } = country
@@ -124,6 +126,7 @@ class App extends Component {
             <Route path='/countries-fetch'  component={CountriesFetch}  />
             <Route path='/countries-axios'  component={CountriesAxios}  />
             <Route path='/hook-count'       component={HookCount}       />
+            <Route path='/hook-form'       component={HookForm}         />
             <Route exact path='/'           component={Home}            />
             <Route component={NotFound} />
           </Switch>

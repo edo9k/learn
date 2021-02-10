@@ -11,6 +11,7 @@ const Navbar = () => (
     <li> <NavLink to='/countries-fetch'>Countries (fetch)</NavLink> </li> 
     <li> <NavLink to='/countries-axios'>Countries (axios)</NavLink> </li> 
     <li> <NavLink to='/hook-count'>Counter (with Hooks)</NavLink> </li>
+    <li> <NavLink to='/hook-form'>Form (with Hooks)</NavLink> </li>
   </ul>
 )
 
