@@ -1,20 +1,5 @@
 import React, { useState } from 'react'
 
-const options = [ 
-  {
-    value: '',
-    value: '-- Select Country --',
-  },
-  { 
-    value: 'Finland',
-    label: 'Finland'
-  },
-  {
-    value: 'Sweden',
-    label: 'Sweden'
-  }
-]
-
 const HookForm = props => {
   const initialState = {
     firstName: '',
@@ -65,7 +50,7 @@ const HookForm = props => {
     console.log(data)
   }
 
-  const { firstName, lastName, title, email, skills } = formData
+  const { firstName, lastName, title, email } = formData
 
   return (
     <div class='HookForm'>

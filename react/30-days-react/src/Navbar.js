@@ -8,10 +8,11 @@ const Navbar = () => (
     <li> <NavLink to='/about'>About</NavLink> </li> 
     <li> <NavLink to='/contact'>Contact</NavLink> </li> 
     <li> <NavLink to='/challenges'>Challenges</NavLink> </li> 
-    <li> <NavLink to='/countries-fetch'>Countries (fetch)</NavLink> </li> 
-    <li> <NavLink to='/countries-axios'>Countries (axios)</NavLink> </li> 
+    <li> <NavLink to='/countries-fetch'>Countries (class+fetch)</NavLink> </li> 
+    <li> <NavLink to='/countries-axios'>Countries (class+axios)</NavLink> </li> 
     <li> <NavLink to='/hook-count'>Counter (with Hooks)</NavLink> </li>
     <li> <NavLink to='/hook-form'>Form (with Hooks)</NavLink> </li>
+    <li> <NavLink to='/hook-fetch'>Countries (hooks+fetch)</NavLink> </li>
   </ul>
 )
 
