@@ -12,6 +12,7 @@ import Navbar from './Navbar'
 import HookCount from './HookCount'
 import HookForm from './HookForm'
 import HookFetch from './HookFetch'
+import InputWithRef from './UseRef'
 import CustomHook from './CustomHooks'
 import { CountriesAxios, CountriesFetch } from './Countries'
 import { Home, About, Contact, Challenges, NotFound } from './DumbComponents'
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path="/hook-form" component={HookForm} />
             <Route path="/hook-fetch" component={HookFetch} />
             <Route path="/custom-hook" component={CustomHook} />
+            <Route path="/uses-ref" component={InputWithRef} />
             <Route exact path="/" component={Home} />
             <Route component={NotFound} />
           </Switch>

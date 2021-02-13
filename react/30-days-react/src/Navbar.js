@@ -46,6 +46,12 @@ const Navbar = () => (
       {' '}
       <NavLink to="/custom-hook">Countries (with Custom Hooks)</NavLink>{' '}
     </li>
+
+    <li>
+      {' '}
+      <NavLink to="/uses-ref">Uncontrolled component</NavLink>{' '}
+    </li>
+
   </ul>
 )
 
