@@ -8,7 +8,13 @@ const Login = ({ attemptServerLogin }) => {
 
   const onChange = e => {
     e.preventDefault()
-    setCredentials({ [e.target.name]: e.target.value })
+
+    setCredentials({ 
+      ...credentials,
+      [e.target.id]: e.target.value
+    })
+
+    console.log(e)
   }
 
   const submitLogin = e => {
