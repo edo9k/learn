@@ -113,3 +113,14 @@ WHERE ingrediente.id = 5
 -> https://www.sqlitetutorial.net/sqlite-inner-join/
 
 */
+
+.print "\nAchando todas as receitas que tem mais de 2 ingredientes: "
+
+SELECT receita.id, receita.titulo
+FROM   receita
+
+LEFT JOIN ingrediente_receita 
+ON ingrediente_receita.receita_id = receita.id
+
+GROUP BY receita.id
+HAVING count(ingrediente_receita.ingrediente_id) < 1
