@@ -6,11 +6,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class StudentController {
+class StudentController extends Controller {
   /**
    * @Route("/student/home")
    */
   public function homeAction() {
-    return new Response('Student details and stuff.');
+    return $this->render('/student/home.html.twig');
   }  
 }
+
