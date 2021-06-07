@@ -102,7 +102,10 @@ void sweep(VM* vm) {
 			free(unreached);
 
 			vm->numObjects--;
-		}
+		} else {
+      (*object)->marked = 0;
+      object = &(*object)->next;
+    }
 	}
 }
 
@@ -111,7 +114,8 @@ void gc(VM* vm) {
 
 	markAll(vm);
 	sweep(vm);
-	
+
+  // 
 	vm->maxObjects = vm->numObjects == 0 ? INIT_OBJ_NUM_MAX : vm->numObjects * 2;
 
 	printf("Collected %d objects, %d remaining.\n",
@@ -181,10 +185,92 @@ void test1() {
 	gc(vm);
 	assert(vm->numObjects == 2, "Should have preserved objects.");
 	freeVM(vm);
+
+  puts("\n");
+}
+
+void test2() {
+  printf("Test 2: Unreached object are collected.\n");
+  VM* vm = newVM();
+
+  pushInt(vm, 2021);
+  pushInt(vm, 1984);
+  pop(vm);
+  pop(vm);
+
+  gc(vm);
+  assert(vm->numObjects == 0, "Should have collected objects.");
+  freeVM(vm);
+
+  puts("\n");
+}
+
+void test3() {
+  printf("Test 3: Reach nested objects.\n");
+  VM* vm = newVM();
+
+  pushInt(vm, 2021);
+  pushInt(vm, 1984);
+  pushPair(vm);
+  pushInt(vm, 6502);
+  pushInt(vm, 8086);
+  pushPair(vm);
+  pushPair(vm);
+
+  gc(vm);
+  assert(vm->numObjects == 7, "Should have reached objects.");
+  freeVM(vm);
+
+  puts("\n");
+}
+
+void test4() {
+  printf("Test 4: Handle cycles.\n");
+  VM* vm = newVM();
+
+  pushInt(vm, 0xAA55);
+  pushInt(vm, 0xBABE);
+  Object* a = pushPair(vm);
+  pushInt(vm, 1987);
+  pushInt(vm, 1789);
+  Object* b = pushPair(vm);
+
+  /* add a cycle, make 2 and 4 unreachable */
+  a->tail = b;
+  b->tail = a;
+
+  gc(vm);
+  assert(vm->numObjects == 4, "Should have collected objects.");
+  freeVM(vm);
+
+  puts("\n");
+}
+
+void perfTest() {
+  printf("Performance Test.\n");
+  VM* vm = newVM();
+
+  for (int i = 0; i < 1000; i++) {
+    for (int j = 0; j < 20; j++) {
+      pushInt(vm, i);
+    }
+
+    for (int k = 0; k < 20; k++) {
+      pop(vm);
+    }
+  }
+
+  freeVM(vm);
+
+  puts("\n");
 }
 
 int main(int argc, const char * argv[]) {
 	test1();
+  test2();
+  test3();
+  test4();
+  perfTest();
 
 	return 0;
 }
