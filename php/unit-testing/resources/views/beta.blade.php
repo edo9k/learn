@@ -8,6 +8,7 @@
 
   <body>
     <h1>This is the Beta page</h1>
+    <a href="/alpha">Previous</a>
   </body>
 
 </html>
