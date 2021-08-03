@@ -1,3 +1,15 @@
+/*
+ *  How to run the binary through CGI on Apache2 
+ *
+ *  # activate the cgi flag
+ *  sudo a2emod cgi
+ *  sudo service apache2 restart
+ *
+ *  # and copy file
+ *  sudo cp index.cgi /usr/lib/cgi-bin/
+ *
+ */
+
 #include <iostream>
 #include <stdlib.h>
 
@@ -6,7 +18,7 @@ using namespace std;
 const string ENV[24] = {
   "COMSPEC",              "DOCUMENT_ROOT",        "GATEWAY_INTERFACE",    
   "HTTP_ACCEPT",          "HTTP_ACCEPT_ENCODING", "HTTP_ACCEPT_LANGUAGE", 
-  "HTTP_CONNECTION",      "HTT_HOST",             "HTTP_USER_AGENT", "PATH",
+  "HTTP_CONNECTION",      "HTTP_HOST",            "HTTP_USER_AGENT", "PATH",
   "QUERY_STRING",         "REMOTE_ADDR",          "REMOTE_PORT",
   "REQUEST_METHOD",       "REQUEST_URI",          "SCRIPT_FILENAME",
   "SCRIPT_NAME",          "SERVER_ADDR",          "SERVER_ADMIN",
