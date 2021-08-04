@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>IndexedDB demo</title>
+  </head>
+
+  <body>
+    <div>
+      <button id="btn-read"     >    Read     </button>
+      <button id="btn-read-all" >  Read all   </button>
+      <button id="btn-add"      >  Add data   </button>
+      <button id="btn-remove"   > Delete data </button>
+    </div>
+
+    <script>
+      // implementation prefixes 
+      window.indexedDB = window.indexedDB 
+        || window.mozIndexedDB 
+        || window.webkitIndexedDB
+        || window.msIndexedDB
+      ;
+  
+      // prefixes for window.IDB objects
+      window.IDBTransaction = window.IDBTransaction
+        || window.webkitIDBTransaction
+        || window.msIDBTransaction
+      ;
+
+      window.IDBKeyRange = window.IDBKeyRange 
+        || window.webkitIDBKeyRange
+        || window.msIDBKeyRange
+      ;
+
+      if (!window.indexedDB) {
+        alert("This browser does not support IndexedDB.")
+      }
+
+      let employeeData = [
+        { id: "00-01", name: "Gandalf, The Gray", age: 6500, email: "gandalf@arda.com" },
+        { id: "00-02", name: "Saruman, The White", age: 6700, email: "saruman@mordor.co" }
+      ]
+
+      let db
+      let request = window.indexedDB.open("northwind_db", 1)
+      
+      request.onerror = function(event) {
+        console.error(event)
+      }
+
+      request.onsuccess = function(event) {
+        db = request.result
+        console.log("Success: ", db)
+      }
+
+      request.onupgradneeded = function(event) {
+        let db = event.target.result
+        let objectStore = db.createObjectStore("employee", {keyPath: "id"})
+
+        for (let item of employeeData) {
+          objectStore.add(item)
+        }
+      }
+
+      function read() {
+        let transaction = db.transaction(["employee"])
+        let objectStore = transaction.objectStore("employee")
+        let request = objectStore.get("00-03")
+
+        request.onerror = function(event) {
+          alert("Unable to retrieve data from database.")
+        }
+
+        request.onsucess = function(event) {
+          if (request.result) {
+            const {name, age, email} = request.result
+
+            alert(`Name: ${name}, Age: ${age}, Email: ${email}.`)
+          } else {
+            alert("The requested data could not be found.")
+          }
+        }
+      }
+
+      function readAll() {
+        let objectStore = db.transaction("employee").objectStore("employee")
+
+        objectStore.openCursor().onsuccess = function(event) {
+          let cursor = event.target.result
+
+          if (cursor) {
+            const {name, age, email} = cursor.value
+
+            alert(`Name: ${name}, Age: ${age}, Email: ${email}.`)             
+          } else {
+            alert("No more entries")
+          }
+        }
+      }
+
+      function add() {
+        let request = db
+          .transaction(["employee"], "readwrite")
+          .objectStore("employee")
+          .add({ id: "00-03", name: "Bilbo", age: 160, email: "baggins@shire.net" })
+
+        request.onsuccess = function(event) {
+          alert("Bilbo was added to the db")
+        }
+
+        request.onerror = function(event) {
+          alert("Unable to add data do db")
+        }
+      }
+
+      function remove() {
+        let request = db
+          .transaction(["employee"], "readwrite")
+          .objectStore("employee")
+          .delete("00-03")
+
+        request.onsuccess = function(event) {
+          alert("Item 00-03 was removed from db")
+        }
+      }
+
+      document.querySelector("#btn-read")
+        .onclick = read
+
+      document.querySelector("#btn-read-all")
+        .onclick = readAll
+
+      document.querySelector("#btn-add")
+        .onclick = add
+
+      document.querySelector("#btn-remove")
+        .onclick = remove
+
+    </script>
+
+  </body>
+</html>
+
