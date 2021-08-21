@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head charset="utf-8">
+    <title> calculadora </title>
+
+    <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+  div {
+    display: inline-block;
+    width: 90%;
+    height: 100%;
+    border: 1px dashed red;
+    margin: 10px;
+    padding 10px;
+  }
+
+  a {
+    display: block;
+    align-self: center;
+  }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <p id="limpa"> Topo da página, pra onde pula o botão limpa</p>
+
+    <div id="primeiro-digito">
+      <a href="#limpa"> O botão "limpa", que na realidade só volta pro topo da página</a>
+      <a href="#0-operacao"> Pula para os calculos com o primeiro digito 0</a>
+      <a href="#1-operacao"> Pula para os calculos com o primeior digito 1</a>
+
+    </div>
+
+    <div id="0-operacao">
+      <a href="#0-soma"> Pula para operações 0 + outro digito </a>
+      <a href="#0-multiplica"> Pula para operações 0 * outro digito </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="1-operacao">
+      <a href="#1-soma"> Pula para operações 1 + outro digito </a>
+      <a href="#1-multiplica"> Pula para operações 1 * outro digito </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="0-soma">
+      <a href="#0-soma-0"> Pula pro resultado de 0 + 0 </a>
+      <a href="#0-soma-1"> Pula pro resultado de 0 + 1 </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="0-multiplica">
+      <a href="#0-multiplica-0"> Pula pro resultado de 0 * 0 </a>
+      <a href="#0-multiplica-1"> Pula pro resultado de 0 * 1 </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="1-soma">
+      <a href="#1-soma-0"> Pula pro resultado de 1 + 0 </a>
+      <a href="#1-soma-1"> Pula pro resultado de 1 + 1 </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="1-multiplica">
+      <a href="#1-multiplica-0"> Pula pro resultado de 1 * 0 </a>
+      <a href="#1-multiplica-1"> Pula pro resultado de 1 * 1 </a>
+      <a href="#limpa"> limpa </a>
+    </div>
+
+    <div id="0-soma-0"> 0 + 0 = 0 </div>
+    <div id="0-soma-1"> 0 + 1 = 1 </div>
+    <div id="1-soma-0"> 1 + 0 = 1 </div>
+    <div id="1-soma-1"> 1 + 1 = 2 </div>
+
+    <a href="#limpa"> limpa </a>
+    <div id="0-multiplica-0"> 0 * 0 = 0 </div>
+    <div id="0-multiplica-1"> 0 * 1 = 0 </div>
+    <div id="1-multiplica-0"> 1 * 0 = 0 </div>
+    <div id="1-multiplica-1"> 1 * 1 = 1 </div>
+
+    <a href="#limpa"> limpa </a>
+
+
+  </body>
