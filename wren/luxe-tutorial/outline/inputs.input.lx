@@ -1,0 +1,12 @@
+input = {
+  map = {
+    left = { keys = ["key_a", "left"] }
+    right = { keys = ["key_d", "right"] }
+    up = { keys = ["key_w", "up"] }
+    down = { keys = ["key_s", "down"] }
+    next = {
+      keys = ["key_x", "up", "key_w", "space", "enter", "escape"]
+      mouse = ["left", "right"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+material = {
+  basis = "luxe: material_basis/sprite_pixelated"
+  inputs = { sprite.image = "image/door" }
+}

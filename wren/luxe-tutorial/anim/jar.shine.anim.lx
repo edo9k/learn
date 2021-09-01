@@ -1,0 +1,26 @@
+animation = {
+  loop = true
+  tracks = [
+    {
+      id = "shine"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/jar.shine"
+        grid = [9 1] //grid
+        frames = [
+          {
+            index_end = 9
+            duration = 0.1
+            index = 1
+          }
+          {
+            index_end = 0
+            duration = 2
+            index = 1
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+  rate = 1
+} //animation

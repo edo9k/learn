@@ -1,0 +1,4 @@
+image = {
+  source = "image/background.png"
+  generate_mipmaps_at_load = false
+}

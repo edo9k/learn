@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "luxe",
+			"script": "run",
+			"problemMatcher": [
+				"$luxe-absolute",
+				"$luxe-relative"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "luxe: run - Build & Run the project"
+		}
+	]
+}

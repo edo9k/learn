@@ -1,0 +1,37 @@
+prototype = {
+  elements = {
+    visual.glow = {
+      modifiers = {
+        sprite = {
+          material = "material/firely.glow"
+          origin = [0 0] //origin
+          height = 25
+          type = "luxe: modifier/sprite"
+          width = 25
+        } //sprite
+        transform = {
+          pos = [-12 -12 0] //pos
+          link = "a582647c-0c10-4cec-b51e-606236be6919"
+          type = "luxe: modifier/transform"
+        } //transform
+      } //modifiers
+      uuid = "3e1f7264-7b00-4307-8c9c-806322fce569"
+    } //visual.glow
+    visual.fly = {
+      modifiers = {
+        sprite = {
+          material = "material/firefly.fly"
+          origin = [0 0] //origin
+          height = 3
+          type = "luxe: modifier/sprite"
+          width = 3
+        } //sprite
+        transform = {
+          pos = [-1 -1 5] //pos
+          type = "luxe: modifier/transform"
+        } //transform
+      } //modifiers
+      uuid = "a582647c-0c10-4cec-b51e-606236be6919"
+    } //visual.fly
+  } //elements
+} //prototype

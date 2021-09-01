@@ -1,0 +1,29 @@
+prototype = {
+  elements = {
+    visual = {
+      modifiers = {
+        sprite = {
+          material = "material/terminal.interact"
+          origin = [0 0] //origin
+          height = 73
+          uv = [0.75 0 1 0.33] //uv
+          flip_v = false
+          flip_h = false
+          type = "luxe: modifier/sprite"
+          width = 73
+        } //sprite
+        anim = {
+          type = "luxe: modifier/anim"
+          play = [
+            "anim/terminal.interact"
+          ] //play
+        } //anim
+        transform = {
+          pos = [-37 -36 0] //pos
+          type = "luxe: modifier/transform"
+        } //transform
+      } //modifiers
+      uuid = "56f830fe-8984-44ea-bbe3-b2ce01b574f8"
+    } //visual
+  } //elements
+} //prototype

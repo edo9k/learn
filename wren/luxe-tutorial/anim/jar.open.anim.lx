@@ -1,0 +1,21 @@
+animation = {
+  loop = false
+  tracks = [
+    {
+      id = "open"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/jar.open"
+        grid = [8 1] //grid
+        frames = [
+          {
+            index_end = 8
+            duration = 0.1
+            index = 1
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+  rate = 1
+} //animation

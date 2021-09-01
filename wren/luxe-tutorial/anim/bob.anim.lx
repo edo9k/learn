@@ -1,0 +1,41 @@
+animation = {
+  loop = true
+  rate = 0.5
+  tracks = [
+    {
+      id = "bob"
+      range = [-4 4] //range
+      type = "luxe: anim/transform"
+      options = {
+        absolute = false
+        channel = "position.y"
+      } //options
+      keys = [
+        {
+          slope_in = 0
+          value = 0
+          time = 0
+          weight_in = 2
+          weight_out = 2
+          slope_out = 0
+        }
+        {
+          slope_in = 0
+          value = 1
+          time = 0.5
+          weight_in = 2
+          weight_out = 2
+          slope_out = 0
+        }
+        {
+          slope_in = 0
+          value = 0
+          time = 1
+          weight_in = 2
+          weight_out = 2
+          slope_out = 0
+        }
+      ] //keys
+    }
+  ] //tracks
+} //animation

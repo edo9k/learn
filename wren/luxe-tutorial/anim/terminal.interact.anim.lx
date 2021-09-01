@@ -1,0 +1,26 @@
+animation = {
+  loop = false
+  rate = 1
+  tracks = [
+    {
+      id = "interact"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/terminal.interact"
+        grid = [4 3] //grid
+        frames = [
+          {
+            index_end = 8
+            duration = 0.08
+            index = 1
+          }
+          {
+            index_end = 12
+            duration = 0.15
+            index = 9
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+} //animation

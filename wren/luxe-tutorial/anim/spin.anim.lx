@@ -1,0 +1,33 @@
+animation = {
+  loop = true
+  tracks = [
+    {
+      id = "spin"
+      range = [0 360] //range
+      type = "luxe: anim/transform"
+      interpolation = "linear"
+      options = {
+        channel = "rotation.z"
+      } //options
+      keys = [
+        {
+          slope_in = 0
+          value = 0
+          time = 0
+          weight_in = 0
+          weight_out = 0
+          slope_out = 0
+        }
+        {
+          slope_in = 0
+          value = 1
+          time = 1
+          weight_in = 0
+          weight_out = 0
+          slope_out = 0
+        }
+      ] //keys
+    }
+  ] //tracks
+  rate = 1
+} //animation

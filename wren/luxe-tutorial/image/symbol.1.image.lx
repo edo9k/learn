@@ -1,0 +1,4 @@
+image = {
+  source = "image/symbol.1.png"
+  generate_mipmaps_at_load = false
+}

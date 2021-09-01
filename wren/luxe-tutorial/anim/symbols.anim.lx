@@ -1,0 +1,26 @@
+animation = {
+  loop = true
+  tracks = [
+    {
+      id = "symbols"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/symbols"
+        grid = [2 1] //grid
+        frames = [
+          {
+            index_end = 0
+            duration = 0.1
+            index = 1
+          }
+          {
+            index_end = 0
+            duration = 0.1
+            index = 2
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+  rate = 1
+} //animation

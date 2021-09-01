@@ -1,0 +1,24 @@
+game = {
+  world = {
+    width = 640
+    height = 360
+  }
+}
+
+engine = {
+  input.entry = "outline/inputs"
+  runtime = {
+    window = {
+      width = 1280
+      height = 720
+      resizable = true
+      fullscreen = false
+    }
+  }
+
+  render = {
+    antialiasing = 0
+    stencil = 8
+    depth = 24
+  }
+}

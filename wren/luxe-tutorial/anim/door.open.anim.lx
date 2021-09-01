@@ -1,0 +1,21 @@
+animation = {
+  rate = 1
+  loop = false
+  tracks = [
+    {
+      id = "door"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/door"
+        grid = [8 4] //grid
+        frames = [
+          {
+            index_end = 9
+            duration = 0.075
+            index = 1
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+} //animation

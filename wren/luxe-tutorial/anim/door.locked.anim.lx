@@ -1,0 +1,31 @@
+animation = {
+  loop = false
+  tracks = [
+    {
+      id = "door.locked"
+      type = "luxe: anim/sprite"
+      options = {
+        material = "material/door"
+        grid = [8 4] //grid
+        frames = [
+          {
+            index_end = 0
+            duration = 0.1
+            index = 1
+          }
+          {
+            index_end = 26
+            duration = 0.1
+            index = 10
+          }
+          {
+            index_end = 0
+            duration = 0.1
+            index = 9
+          }
+        ] //frames
+      } //options
+    }
+  ] //tracks
+  rate = 1
+} //animation
