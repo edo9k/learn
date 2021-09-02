@@ -16,28 +16,23 @@ class Game is Ready {
 
     app = App.new()
 
-    app.color = [0, 0, 0, 1]
+
+    app.color = [0, 0, 0, 1] // make bg black
+
+    // create player entity
+    var player = Entity.create(app.world, "player")
+    // add material from assets
+    var material = Assets.material("material/player")
+    // attach sprite to player entity
+    Sprite.create(player, material, 58, 136)
+    // attach transform to entity, to manipulate position
+    Transform.create(player)
+    // set position to screen center
+    Transform.set_pos(player, app.world_width/2, app.world_height/2)
 
   } //ready
 
   tick(delta) {
-
-    if(_logo == null) {
-
-      _logo = Entity.create(app.ui, "logo")
-      Transform.create(_logo)
-      Transform.set_pos(_logo, app.width/2, app.height/2, 0)
-      Sprite.create(_logo, Assets.material("luxe: material/logo.sprite"), 128, 128)
-
-    } else {
-  
-      var pos = Camera.screen_point_to_world(
-                  app.ui_camera, 
-                  Input.mouse_x(),
-                  Input.mouse_y())
-      Transform.set_pos(_logo, pos.x, pos.y, 0)
-
-    } //if logo
 
     var mouse = app.mouse
 
