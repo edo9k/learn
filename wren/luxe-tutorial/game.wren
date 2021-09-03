@@ -19,6 +19,9 @@ class Game is Ready {
 
     app.color = [0, 0, 0, 1] // make bg black
 
+    // load scene
+    Scene.load(app.world, "scene/area1")
+
     // create player entity
     var player = Entity.create(app.world, "player")
     // add material from assets
