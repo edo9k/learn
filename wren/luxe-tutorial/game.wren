@@ -16,28 +16,45 @@ class Game is Ready {
 
     app = App.new()
 
-
     app.color = [0, 0, 0, 1] // make bg black
 
     // load scene
     Scene.load(app.world, "scene/area1")
 
-    // create player entity
-    var player = Entity.create(app.world, "player")
-    // add material from assets
-    var material = Assets.material("material/player")
-    // attach sprite to player entity
-    Sprite.create(player, material, 58, 136)
-    // attach transform to entity, to manipulate position
-    Transform.create(player)
-    // set position to screen center
-    Transform.set_pos(player, app.world_width/2, app.world_height/2)
+    // create player
+    create_player()
 
   } //ready
+
+  create_player() {
+    _player = Entity.create(app.world, "player")
+    var material = Assets.material("material/player")
+    Sprite.create(_player, material, 58, 136)
+    Transform.create(_player)
+    Transform.set_pos(_player, app.world_width/2, app.world_height/2)
+
+    Move.create(_player)
+    Move.allow_y(_player, false)
+
+    _move_speed = 80
+    _move_target = Entity.create(app.world, "player.move")
+    Transform.create(_move_target)
+
+  } // create_player
 
   tick(delta) {
 
     var mouse = app.mouse
+
+    if(Input.mouse_state_released(MouseButton.left)) {
+
+      var direction = Math.dir2D(mouse, Transform.get_pos(_player))
+
+      if(direction.x != 0) Sprite.set_flip_h(_player, direction.x > 0)
+
+      Transform.set_pos(_move_target, mouse.x, mouse.y)
+      Move.to(_player, _move_target, _move_speed)
+    }
 
     if(Input.key_state_released(Key.escape)) {
       IO.shutdown()
