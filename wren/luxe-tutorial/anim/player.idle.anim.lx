@@ -1,0 +1,5 @@
+animation = {
+  loop = true
+  tracks = [] //tracks
+  rate = 1
+} //animation
