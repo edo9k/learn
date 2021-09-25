@@ -1,4 +1,4 @@
 image = {
-  source = "image/player.png"
+  source = "image/player.idle.png"
   generate_mipmaps_at_load = false
 }

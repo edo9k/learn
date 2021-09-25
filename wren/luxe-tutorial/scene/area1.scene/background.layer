@@ -1,0 +1,22 @@
+layer = {
+  elements = {
+    background_image = {
+      modifiers = {
+        sprite = {
+          material = "material/background"
+          origin = [0 0] //origin
+          height = 360
+          uuid = "8f317815-e1dd-4572-96bc-cbb690594993"
+          type = "luxe: modifier/sprite"
+          width = 960
+        } //sprite
+        transform = {
+          type = "luxe: modifier/transform"
+          uuid = "2b8e2e54-cee5-4ba5-b3e9-7bc8f8de8560"
+          pos = [0 0 -1] //pos
+        } //transform
+      } //modifiers
+      uuid = "ee7ecfaa-b49c-48b8-83eb-c32fb9aa7b2f"
+    } //background_image
+  } //elements
+} //layer
