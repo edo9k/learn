@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>heart svg from wikipedia</title>
+  <!-- meta http-equiv="refresh" content="5" -->
+</head>
+<body>
+
+<svg
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.1" height="315" width="342" >
+ <defs>
+  <style type="text/css"><![CDATA[
+    .outline { stroke:none; stroke-width:0 }
+  ]]></style>
+   <g id="heart">
+   <path 
+    d="M0 200 v-200 h200 
+    a100,100 90 0,1 0,200
+    a100,100 90 0,1 -200,0
+    z" />
+  </g>
+ </defs>
+ <desc>
+   a nearly perfect heart
+	 made of two arcs and a right angle
+ </desc>
+  <use xlink:href="#heart" class="outline " fill="red" />
+</svg>
+
+<hr>
+
+<svg id="h" height="315" width="342" >
+   <path 
+    d="M0 200 v-200 h200 
+    a100,100 90 0,1 0,200
+    a100,100 90 0,1 -200,0
+    z" fill="red" />
+</svg>
+
+<hr>
+
+<span id="timestamp">Hi?</span>
+  <script>
+    document.querySelector("#timestamp").innerText = (new Date()).toLocaleString()
+  </script>
+</body>
+</html>
