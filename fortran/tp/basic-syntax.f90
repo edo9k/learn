@@ -1,19 +1,17 @@
 program addNumbers
-! turn off implicit typing
-implicit none
+  ! turn off implicit typing
+  implicit none
 
-! declarations
-real :: a, b, result
+  ! declarations
+  real :: a, b, result
 
-! procedure division
-a = 0.03 
-b = 0.01
+  ! procedure division
+  a = 0.03 
+  b = 0.01
 
-result = a - b 
+  result = a - b 
 
-print *, 'The total is ', result
+  print *, 'The total is ', result
 
 end program addNumbers
-
-
 
