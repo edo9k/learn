@@ -30,7 +30,7 @@ implicit none
   print *, " -- ending the execution with `stop` -- "
   stop
 
-  print *, "this lin won't be printed, since the `stop` above will end the program"
+  print *, "this line won't be printed, since the `stop` above will end the program"
 
 
 end program loop_control
