@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+      .jumbotron {
+        background-color: #e6ffe6;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- the elm part loads here -->
+    <div id="root"></div>
+    <!-- elm part above -->
+
+    <script src="./elm.js"></script>
+    <script>
+      const app = Elm.HomePage.init({
+        node: document.querySelector("#root")
+      })
+    </script>
+    
+    </div>
+  </body>
+</html>
+
