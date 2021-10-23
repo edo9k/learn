@@ -128,3 +128,7 @@ Homestead.json
 # python
 *.pyc 
 
+# elm
+elm-stuff
+repl-temp-*
+
