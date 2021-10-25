@@ -58,12 +58,24 @@ hashtag dayNumber =
     _           -> "#NonExistingOption"
 
 
+
+revelation = 
+  """
+  This is an example of a multiline string in Elm. 
+  It's just like the ones in Pyhthon, I think. You 
+  can even use regular "quotes" inside it.
+  """
+
+
 main = 
-  Html.text <| hashtag 5
+  Html.text revelation
 
 
 
 {--
+main = 
+  Html.text <| hashtag 5
+
 main =
   escapeEarth 10 6.7 "low"
     |> Html.text
