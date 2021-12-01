@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "json": "json-server --watch ./old-school.json -p 5019",
-    "text": "http-server server -a localhost -p 5016 --cors"
+    "text": "http-server server -a localhost -p 5016 --cors",
+    "posts": "json-server --watch ./db.json -p 5019"
   },
   "keywords": [],
   "author": "",
