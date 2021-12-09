@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Hello World WebComponent</title>
+  </head>
+
+
+  <body>
+
+    <hello-world></hello-world>
+
+    <script>
+
+      class HelloWorld extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: "open" });
+          this.shadowRoot.innerHTML = `<h1>Hello, World!</h1>`;
+        }
+      }
+
+      customElements.define("hello-world", HelloWorld);
+
+    </script>
+  </body>
+</html>
