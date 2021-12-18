@@ -1,5 +1,8 @@
 {
   "esModuleInterop": true,
-  "allowSyntheticDefaultImports": true
+  "allowSyntheticDefaultImports": true,
+  "compilerOptions": {
+    "target": "esnext"
+  }
 }
 
