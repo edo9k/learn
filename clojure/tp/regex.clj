@@ -20,8 +20,5 @@
   ; replace-first replaces only the first occurence
   (println (clojure.string/replace-first example-text numbers "1453")))
 
-
-
-
-
 (regular-expressions)
+
