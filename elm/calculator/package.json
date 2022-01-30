@@ -1,0 +1,22 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "toy calculator build with elm",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist && elm make src/Main.elm --optimize --output=dist/elm.js && cp index.html dist && cp style.css dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "elm",
+    "calculator",
+    "javascript",
+    "tutorial"
+  ],
+  "author": "Anon",
+  "license": "ISC",
+  "devDependencies": {
+    "elm-live": "^4.0.2",
+    "elm-test": "^0.19.1-revision7"
+  }
+}
