@@ -132,3 +132,7 @@ Homestead.json
 elm-stuff
 repl-temp-*
 
+# idris 
+*.ttc
+*.ttm
+*.ibc
