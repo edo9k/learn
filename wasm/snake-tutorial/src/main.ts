@@ -2,7 +2,7 @@ import * as w4 from "./wasm4";
 import { Point, Snake } from "./snake"
 
 const snake = new Snake()
-let fruit: Point(rnd(), rnd())
+const fruit = new Point(rnd(), rnd())
 let prevState: u8
 let frameCount = 0
 
@@ -76,9 +76,10 @@ export function update (): void {
   }
 
 
-
-  // store<u16>(w4.DRAW_COLORS, 2);
-  // w4.text("shnakey", 32, 30);
+  store<u16>(w4.DRAW_COLORS, 2)
+  w4.text("shnakey",    3, 130)
+  w4.text(`snake: x: ${ snake.body[0].x } y: ${ snake.body[0].y }`, 3, 140)
+  w4.text(`apple: x: ${ fruit.x         } y: ${ fruit.y         }`, 3, 150)
 
   snake.draw()
 
