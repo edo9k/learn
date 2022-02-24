@@ -2,8 +2,32 @@ import * as w4 from "./wasm4";
 import { Point, Snake } from "./snake"
 
 const snake = new Snake()
+let fruit: Point(rnd(), rnd())
 let prevState: u8
 let frameCount = 0
+
+const fruitSprite = memory.data<u8>([ 
+ 	0b00000000,
+	0b10100000,
+	0b00000010,
+	0b00000000,
+	0b00001110,
+	0b11110000,
+	0b00110110,
+	0b01011100,
+	0b11010110,
+	0b01010111,
+	0b11010101,
+	0b01010111,
+	0b00110101,
+	0b01011100,
+	0b00001111,
+	0b11110000 
+])
+
+function rnd(n : i32 = 20) : u16 {
+  return u16(Math.floor(Math.random() * n))
+}
 
 function input(): void {
   const gamepad = load<u8>(w4.GAMEPAD1)
@@ -27,13 +51,39 @@ export function start(): void {
 export function update (): void {
   frameCount++
 
-  if (frameCount % 15 == 0)
-    snake.update()
-
   input() 
 
-  store<u16>(w4.DRAW_COLORS, 2);
-  w4.text("shnakey", 32, 30);
+
+  if (frameCount % 15 == 0) {
+    snake.update()
+
+    if (snake.isDead()) {
+      snake.body = [
+        new Point(2, 0),
+        new Point(1, 0),
+        new Point(0, 0)
+      ]
+      snake.direction.x = 1
+      snake.direction.y = 0
+    }
+
+    if (snake.body[0].equals(fruit)) {
+      let tail = snake.body[snake.body.length - 1]
+      snake.body.push(new Point(tail.x, tail.y))
+      fruit.x = rnd()
+      fruit.y = rnd()
+    }
+  }
+
+
+
+  // store<u16>(w4.DRAW_COLORS, 2);
+  // w4.text("shnakey", 32, 30);
 
   snake.draw()
+
+  store<u16>(w4.DRAW_COLORS, 0x4320)
+  w4.blit(fruitSprite, fruit.x * 8, fruit.y * 8, 8, 8, w4.BLIT_2BPP)
 }
+
+

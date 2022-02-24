@@ -48,6 +48,18 @@ export class Snake {
     }
   }
 
+  isDead(): bool {
+    const body = this.body
+    const head = unchecked(body[0])
+    
+    for (let i = 1, len = this.body.length; i < len; i++) {
+      if (unchecked(body[i]).equals(head)) {
+        return true
+      }
+    }
+
+    return false
+  }
 
   draw(): void {
     store<u16>(w4.DRAW_COLORS, 0x0043)
