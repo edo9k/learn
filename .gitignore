@@ -136,3 +136,6 @@ repl-temp-*
 *.ttc
 *.ttm
 *.ibc
+
+# erlang
+*.beam
