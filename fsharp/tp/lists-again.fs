@@ -3,7 +3,7 @@ printfn "--- more examples using lists ---"
 
 // reversing a list with recursion
 
-let list = [10..0] 
+let list = [5; 4; 3; 2; 1; 0] 
 printfn "Original list: %A" list
 
 let reverse lt = 
@@ -49,7 +49,7 @@ printfn "Average with List.average: %A" (List.average [0.0 .. 10.0])
 
 // List.fold (which is reduce in Javascript)
 
-let foldSum = List.fold( fun acc cur -> acc + cur) 0 list 
+let foldSum = List.fold (fun acc cur -> acc + cur) 0 list;;
 printfn "Sum with List.fold: %A" foldSum
 
 
