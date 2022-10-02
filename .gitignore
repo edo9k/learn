@@ -139,3 +139,7 @@ repl-temp-*
 
 # erlang
 *.beam
+
+# java (and scala) .class files
+*.class
+
