@@ -1,0 +1,23 @@
+program Hello;
+var
+	b : byte=0; // 0-255 type
+	i : integer=0; // 0-65535 type
+	p : pointer; // pointer, obvsly
+	s : string; // char array
+	hello: cstring = ("Hello, World!");
+begin
+	// blank screen with spaces
+	ClearScreen(key_space, #screen_char_loc);
+	
+	// set screen to white
+	ClearScreen(white, screen_col_loc);
+	
+	// move cursor
+	moveto(10, 10, hi(screen_char_loc));
+	
+	// print text from variable
+	printstring(#hello, 0, 12);
+	
+	// loop forever
+	Loop(); 
+end.
