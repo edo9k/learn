@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Art Gallery CRUD</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Art Gallery CRUD</h1>
+
+    <h2>Galleries</h2>
+    <div id="galleryList"></div>
+    <button onclick="showGalleryForm()">Add Gallery</button>
+
+    <h2>Artists</h2>
+    <div id="artistList"></div>
+    <button onclick="showArtistForm()">Add Artist</button>
+
+    <h2>Exhibitions</h2>
+    <div id="exhibitionList"></div>
+    <button onclick="showExhibitionForm()">Add Exhibition</button>
+
+    <!-- Gallery Form Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideGalleryForm()">&times;</span>
+            <h3>Add Gallery</h3>
+            <form id="galleryForm">
+                <input type="text" placeholder="Name" id="galleryName" required>
+                <input type="text" placeholder="Location" id="galleryLocation" required>
+                <input type="text" placeholder="Opening Hours" id="galleryOpeningHours" required>
+                <input type="text" placeholder="Contact Number" id="galleryContactNumber" required>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Artist Form Modal -->
+    <div id="artistModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideArtistForm()">&times;</span>
+            <h3>Add Artist</h3>
+            <form id="artistForm">
+                <input type="text" placeholder="Name" id="artistName" required>
+                <input type="text" placeholder="Birth Date" id="artistBirthDate" required>
+                <input type="text" placeholder="Nationality" id="artistNationality" required>
+                <input type="text" placeholder="Contact Email" id="artistContactEmail" required>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Exhibition Form Modal -->
+    <div id="exhibitionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideExhibitionForm()">&times;</span>
+            <h3>Add Exhibition</h3>
+            <form id="exhibitionForm">
+                <select id="gallerySelect" required>
+                    <option value="" disabled selected>Select Gallery</option>
+                </select>
+                <select id="artistSelect" required>
+                    <option value="" disabled selected>Select Artist</option>
+                </select>
+                <input type="text" placeholder="Title" id="exhibitionTitle" required>
+                <input type="text" placeholder="Start Date" id="exhibitionStartDate" required>
+                <input type="text" placeholder="End Date" id="exhibitionEndDate" required>
+                <input type="text" placeholder="Description" id="exhibitionDescription" required>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
