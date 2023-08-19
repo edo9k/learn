@@ -1,0 +1,41 @@
+
+<h1>Open the console.</h1>
+
+<button id="go">Next message.</button>
+
+
+<script>
+  const emojis = ['💪', '🧠', '📚', '🚀', '👊', '🕰️', '⏳', '📝', '🧩', '🤓', '🔍', '🌱', '💡', '🧪', '💻', '📅', '🛠️', '🕊️', '🚧', '🔧', '🌌', '📡' ];
+
+  function copyToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      console.log(text)
+    }
+
+  function getRandomCombination() {
+      const selectedEmojis = [];
+
+      while (selectedEmojis.length < 3) {
+          const randomIndex = Math.floor(Math.random() * emojis.length);
+          const randomEmoji = emojis[randomIndex];
+
+          if (!selectedEmojis.includes(randomEmoji)) {
+              selectedEmojis.push(randomEmoji);
+            }
+        }
+
+      return selectedEmojis.join('');
+    }
+
+  document.querySelector("#go").addEventListener("click", () => {
+      // Exemplo de uso
+      const randomEmojiCombination = getRandomCombination();
+      copyToClipboard("Valeu, tamo junto! " + randomEmojiCombination)
+    })
+
+</script>
