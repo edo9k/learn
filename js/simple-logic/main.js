@@ -15,7 +15,8 @@ for (p of p_values) {
       OR: p || q ,
       " ->": implication( p, q),
       "<->": bicondition(p, q),
-      "~(p AND q) <-> (~p OR ~q)": bicondition( !(p && q), (!p || !q) )
+      "(p -> ~q)": implication(p, !q) 
+
     })
   }
 }
