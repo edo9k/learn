@@ -1,0 +1,9 @@
+install sdl library
+
+sudo apt-get install libsdl2-dev
+
+
+compile with
+
+gcc rotate_cube.c -o rotate_cube -lSDL2 -lm
+
