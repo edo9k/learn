@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX GraphQL Example</title>
+    <!-- Include HTMX script -->
+    <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
+    <!-- Include GraphiQL script -->
+    <script src="https://cdn.jsdelivr.net/npm/graphiql@1.0.0/build/graphiql.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/graphiql@1.0.0/build/graphiql.min.css" />
+</head>
+<body>
+
+    <h1>HTMX GraphQL Example</h1>
+
+    <div hx-get="/graphql" hx-target="#result" hx-swap="outerHTML">
+        <button type="button">Fetch Data</button>
+    </div>
+
+    <div id="result">
+        <!-- Result will be displayed here -->
+    </div>
+
+    <!-- Include the HTMX updateResult function -->
+    <script>
+        function updateResult(data) {
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            data.data.people.forEach(function(person) {
+                resultDiv.innerHTML += `<p>${person.name}, ${person.age}, ${person.city}</p>`;
+            });
+        }
+    </script>
+
+    <!-- Include the GraphiQL initialization script -->
+    <script>
+        // Replace the /graphql endpoint with your actual GraphQL endpoint
+        const graphiqlElement = document.createElement("div");
+        document.body.appendChild(graphiqlElement);
+
+        const graphiql = GraphiQL.create({
+            fetcher: htmx.fetch,
+            schema: null,
+            query: "",
+            container: graphiqlElement,
+        });
+    </script>
+
+</body>
+</html>
+
