@@ -127,6 +127,7 @@ Homestead.json
 
 # python
 *.pyc 
+venv/  
 
 # elm
 elm-stuff
