@@ -12,7 +12,7 @@ def parse_contents(contents):
     content_type, content_string = contents.split(",")
     decoded = base64.b64decode(content_string)
     try:
-        # Read CSV with semicolon separator
+        # Read CSV with ISO-8859-1 encoding and semicolon separator
         df = pd.read_csv(io.StringIO(decoded.decode("iso-8859-1")), sep=";")
         # Convert necessary columns to appropriate data types
         df["Preço"] = (
@@ -30,12 +30,35 @@ def parse_contents(contents):
         return None
 
 
+# Function to format currency columns
 def format_currency_column(df, column_name):
     # df[column_name] = df[column_name].apply(
     #    lambda x: f"R$ {x:,.2f}".replace(",", "v").replace(".", ",").replace("v", ".")
     # )
     return df
 
+
+# Load the CSV file at startup with ISO-8859-1 encoding
+csv_file_path = "./imoveis.csv"
+preloaded_df = pd.read_csv(csv_file_path, sep=";", encoding="iso-8859-1")
+preloaded_df["Preço"] = (
+    preloaded_df["Preço"].str.replace(".", "").str.replace(",", ".").astype(float)
+)
+preloaded_df["Valor de avaliação"] = (
+    preloaded_df["Valor de avaliação"]
+    .str.replace(".", "")
+    .str.replace(",", ".")
+    .astype(float)
+)
+
+# Encode the preloaded CSV content to base64
+def encode_preloaded_csv(file_path):
+    with open(file_path, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+    return f"data:text/csv;base64,{encoded}"
+
+
+preloaded_content = encode_preloaded_csv(csv_file_path)
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
@@ -64,7 +87,10 @@ app.layout = html.Div(
                 html.Label("Filter by Cidade"),
                 dcc.Checklist(
                     id="cidade-filter",
-                    options=[],
+                    options=[
+                        {"label": cidade, "value": cidade}
+                        for cidade in preloaded_df["Cidade"].unique()
+                    ],
                     value=[],
                     labelStyle={"display": "inline-block", "margin-bottom": "15px"},
                 ),
@@ -72,8 +98,8 @@ app.layout = html.Div(
         ),
         dash_table.DataTable(
             id="datatable",
-            columns=[],
-            data=[],
+            columns=[{"name": i, "id": i} for i in preloaded_df.columns],
+            data=preloaded_df.to_dict("records"),
             filter_action="native",
             sort_action="native",
             page_action="native",
@@ -98,24 +124,27 @@ app.layout = html.Div(
     [State("upload-data", "filename"), State("datatable", "data")],
 )
 def update_table(contents, selected_cidades, filename, current_data):
-    if contents is not None:
+    if contents is None:
+        df = preloaded_df.copy()
+    else:
         df = parse_contents(contents)
-        if df is not None:
-            df = format_currency_column(df, "Preço")
-            df = format_currency_column(df, "Valor de avaliação")
+        if df is None:
+            return [], [], []
 
-            columns = [{"name": i, "id": i} for i in df.columns]
-            # Generate options from the full dataset
-            cidade_options = [
-                {"label": cidade, "value": cidade} for cidade in df["Cidade"].unique()
-            ]
-            # Filter dataframe based on selected cities
-            if selected_cidades:
-                df = df[df["Cidade"].isin(selected_cidades)]
-            data = df.to_dict("records")
-            return columns, data, cidade_options
-    return [], [], []
+    df = format_currency_column(df, "Preço")
+    df = format_currency_column(df, "Valor de avaliação")
+
+    columns = [{"name": i, "id": i} for i in df.columns]
+    cidade_options = [
+        {"label": cidade, "value": cidade} for cidade in df["Cidade"].unique()
+    ]
+
+    if selected_cidades:
+        df = df[df["Cidade"].isin(selected_cidades)]
+
+    data = df.to_dict("records")
+    return columns, data, cidade_options
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
