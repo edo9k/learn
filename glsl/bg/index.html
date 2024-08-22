@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <title>Rotating Cube with GLSL</title>
+  </head>
+  <body>
+    <canvas id="webgl-canvas"></canvas>
+    <script type="x-shader/x-vertex" id="vertexShader">
+      attribute vec4 a_position;
+        uniform mat4 u_matrix;
+
+        void main() {
+            gl_Position = u_matrix * a_position;
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentShader">
+
+      precision mediump float;
+        uniform vec4 u_color;
+
+        void main() {
+            gl_FragColor = u_color;
+        }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const vertexShaderSource = document.getElementById("vertexShader").text;
+        const fragmentShaderSource =
+          document.getElementById("fragmentShader").text;
+
+        const canvas = document.getElementById("webgl-canvas");
+        const gl = canvas.getContext("webgl");
+
+        if (!gl) {
+          console.error(
+            "Unable to initialize WebGL. Your browser may not support it.",
+          );
+          return;
+        }
+
+        // Vertex shader
+        const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vertexShader, vertexShaderSource);
+        gl.compileShader(vertexShader);
+
+        if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+          console.error(
+            "Vertex shader compilation error:",
+            gl.getShaderInfoLog(vertexShader),
+          );
+          return;
+        }
+
+        // Fragment shader
+        const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fragmentShader, fragmentShaderSource);
+        gl.compileShader(fragmentShader);
+
+        if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+          console.error(
+            "Fragment shader compilation error:",
+            gl.getShaderInfoLog(fragmentShader),
+          );
+          return;
+        }
+
+        // Shader program
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          console.error(
+            "Shader program linking error:",
+            gl.getProgramInfoLog(program),
+          );
+          return;
+        }
+
+        gl.useProgram(program);
+
+        // Cube vertices
+        const vertices = new Float32Array([
+          -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, -1, 1, 1, 1,
+          1, -1, 1, 1,
+        ]);
+
+        // Vertex buffer
+        const vertexBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+        const positionAttribLocation = gl.getAttribLocation(
+          program,
+          "a_position",
+        );
+        gl.vertexAttribPointer(
+          positionAttribLocation,
+          3,
+          gl.FLOAT,
+          false,
+          0,
+          0,
+        );
+        gl.enableVertexAttribArray(positionAttribLocation);
+
+        // Uniforms
+        const matrixUniformLocation = gl.getUniformLocation(
+          program,
+          "u_matrix",
+        );
+        const colorUniformLocation = gl.getUniformLocation(program, "u_color");
+
+        // Rotation matrix
+        const rotationMatrix = mat4.create();
+        const angle = Math.PI / 180.0;
+
+        function animate() {
+          gl.clearColor(0.8, 0.8, 0.8, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+          mat4.rotateX(rotationMatrix, rotationMatrix, angle);
+          mat4.rotateY(rotationMatrix, rotationMatrix, angle);
+          mat4.rotateZ(rotationMatrix, rotationMatrix, angle);
+
+          gl.uniformMatrix4fv(matrixUniformLocation, false, rotationMatrix);
+          gl.uniform4fv(colorUniformLocation, [0.4, 0.4, 1.0, 1.0]);
+
+          gl.drawArrays(gl.LINE_LOOP, 0, vertices.length / 3);
+
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+      });
+    </script>
+  </body>
+</html>
