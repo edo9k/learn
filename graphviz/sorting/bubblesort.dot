@@ -1,0 +1,13 @@
+digraph BubbleSort {
+    node [shape=box, style="filled", color=lightcoral];
+
+    Start -> "Compare adjacent elements";
+    "Compare adjacent elements" -> "Swap if out of order";
+    "Swap if out of order" -> "Repeat for next element";
+    "Repeat for next element" -> "Repeat until no swaps needed";
+    "Repeat until no swaps needed" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

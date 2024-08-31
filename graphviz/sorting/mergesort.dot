@@ -1,0 +1,14 @@
+digraph MergeSort {
+    node [shape=box, style="filled", color=lightgreen];
+
+    Start -> "Split array into two halves";
+    "Split array into two halves" -> "Recursively sort left half";
+    "Split array into two halves" -> "Recursively sort right half";
+    "Recursively sort left half" -> "Merge sorted halves";
+    "Recursively sort right half" -> "Merge sorted halves";
+    "Merge sorted halves" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

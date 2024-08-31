@@ -1,0 +1,13 @@
+digraph SelectionSort {
+    node [shape=box, style="filled", color=lightskyblue];
+
+    Start -> "Find minimum element in unsorted array";
+    "Find minimum element in unsorted array" -> "Swap with first unsorted element";
+    "Swap with first unsorted element" -> "Move sorted/unsorted boundary right";
+    "Move sorted/unsorted boundary right" -> "Repeat until array is sorted";
+    "Repeat until array is sorted" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

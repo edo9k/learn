@@ -1,0 +1,14 @@
+digraph HeapSort {
+    node [shape=box, style="filled", color=lightyellow];
+
+    Start -> "Build max heap from array";
+    "Build max heap from array" -> "Swap max with last element";
+    "Swap max with last element" -> "Reduce heap size";
+    "Reduce heap size" -> "Heapify root";
+    "Heapify root" -> "Repeat until heap size is 1";
+    "Repeat until heap size is 1" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

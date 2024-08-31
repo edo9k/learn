@@ -1,0 +1,14 @@
+digraph InsertionSort {
+    node [shape=box, style="filled", color=lightpink];
+
+    Start -> "Start with second element";
+    "Start with second element" -> "Compare with previous elements";
+    "Compare with previous elements" -> "Shift elements if greater than current";
+    "Shift elements if greater than current" -> "Insert current element in correct position";
+    "Insert current element in correct position" -> "Repeat for all elements";
+    "Repeat for all elements" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

@@ -1,0 +1,15 @@
+digraph QuickSort {
+    node [shape=box, style="filled", color=lightblue];
+
+    Start -> "Choose a pivot";
+    "Choose a pivot" -> "Partition array into two halves";
+    "Partition array into two halves" -> "Recursively sort left half";
+    "Partition array into two halves" -> "Recursively sort right half";
+    "Recursively sort left half" -> "Combine sorted halves and pivot";
+    "Recursively sort right half" -> "Combine sorted halves and pivot";
+    "Combine sorted halves and pivot" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+
