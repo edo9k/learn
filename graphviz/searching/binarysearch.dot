@@ -1,0 +1,20 @@
+digraph BinarySearch {
+    node [shape=box, style="filled", color=lightblue];
+
+    Start -> "Initialize low = 0, high = length - 1";
+    "Initialize low = 0, high = length - 1" -> "Check if low <= high";
+    "Check if low <= high" -> "Calculate mid = (low + high) / 2" [label="Yes"];
+    "Check if low <= high" -> "Return -1 (element not found)" [label="No"];
+    "Calculate mid = (low + high) / 2" -> "Compare target with arr[mid]";
+    "Compare target with arr[mid]" -> "Return mid (element found)" [label="If target == arr[mid]"];
+    "Compare target with arr[mid]" -> "Set low = mid + 1" [label="If target > arr[mid]"];
+    "Compare target with arr[mid]" -> "Set high = mid - 1" [label="If target < arr[mid]"];
+    "Set low = mid + 1" -> "Check if low <= high";
+    "Set high = mid - 1" -> "Check if low <= high";
+    "Return -1 (element not found)" -> End;
+    "Return mid (element found)" -> End;
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    End [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

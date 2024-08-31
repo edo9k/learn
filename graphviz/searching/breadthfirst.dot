@@ -1,0 +1,22 @@
+digraph BFS {
+    node [shape=box, style="filled", color=lightgreen];
+
+    Start -> "Initialize queue with root node";
+    "Initialize queue with root node" -> "Mark root as visited";
+    "Mark root as visited" -> "Check if queue is empty";
+    "Check if queue is empty" -> "Dequeue a node" [label="No"];
+    "Check if queue is empty" -> "End Search" [label="Yes"];
+    "Dequeue a node" -> "Process current node";
+    "Process current node" -> "Check all adjacent nodes";
+    "Check all adjacent nodes" -> "Check if adjacent node is visited";
+    "Check if adjacent node is visited" -> "Enqueue and mark as visited" [label="No"];
+    "Check if adjacent node is visited" -> "Skip to next adjacent node" [label="Yes"];
+    "Enqueue and mark as visited" -> "Check if queue is empty";
+    "Skip to next adjacent node" -> "Check if all adjacent nodes are checked";
+    "Check if all adjacent nodes are checked" -> "Check if queue is empty" [label="Yes"];
+    "Check if all adjacent nodes are checked" -> "Check if adjacent node is visited" [label="No"];
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "End Search" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+
