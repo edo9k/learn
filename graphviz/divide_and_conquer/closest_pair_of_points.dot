@@ -1,0 +1,16 @@
+digraph ClosestPair {
+    node [shape=box, style="filled", color=lightblue];
+
+    Start -> "If the number of points is <= 3, use brute force to find closest pair";
+    "If the number of points is <= 3, use brute force to find closest pair" -> "Return closest pair distance" [label="Yes"];
+    "If the number of points is <= 3, use brute force to find closest pair" -> "Divide the points into two halves" [label="No"];
+    "Divide the points into two halves" -> "Find the closest pair in the left half recursively";
+    "Find the closest pair in the left half recursively" -> "Find the closest pair in the right half recursively";
+    "Find the closest pair in the right half recursively" -> "Find the closest pair across the divide";
+    "Find the closest pair across the divide" -> "Return the minimum distance of the three pairs";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return closest pair distance" [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return the minimum distance of the three pairs" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+
