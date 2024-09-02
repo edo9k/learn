@@ -1,0 +1,21 @@
+digraph LCS {
+    node [shape=box, style="filled", color=lightcoral];
+
+    Start -> "Initialize 2D array `dp` of size (m+1)x(n+1) to 0";
+    "Initialize 2D array `dp` of size (m+1)x(n+1) to 0" -> "For i from 1 to m";
+    "For i from 1 to m" -> "For j from 1 to n";
+    "For j from 1 to n" -> "If str1[i-1] == str2[j-1]";
+    "If str1[i-1] == str2[j-1]" -> "dp[i][j] = dp[i-1][j-1] + 1" [label="Yes"];
+    "If str1[i-1] != str2[j-1]" -> "dp[i][j] = max(dp[i-1][j], dp[i][j-1])" [label="No"];
+    "dp[i][j] = dp[i-1][j-1] + 1" -> "Check if all cells filled";
+    "dp[i][j] = max(dp[i-1][j], dp[i][j-1])" -> "Check if all cells filled";
+    "Check if all cells filled" -> "Increment j" [label="No"];
+    "Increment j" -> "For j from 1 to n";
+    "Check if all cells filled" -> "Increment i" [label="Yes"];
+    "Increment i" -> "For i from 1 to m";
+    "Increment i" -> "Return dp[m][n]" [label="After all iterations"];
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return dp[m][n]" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

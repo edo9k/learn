@@ -1,0 +1,16 @@
+digraph FibonacciDP {
+    node [shape=box, style="filled", color=lightyellow];
+
+    Start -> "Initialize an array `fib` of size n+1";
+    "Initialize an array `fib` of size n+1" -> "Set fib[0] = 0, fib[1] = 1";
+    "Set fib[0] = 0, fib[1] = 1" -> "For i from 2 to n";
+    "For i from 2 to n" -> "Compute fib[i] = fib[i-1] + fib[i-2]";
+    "Compute fib[i] = fib[i-1] + fib[i-2]" -> "Check if i < n";
+    "Check if i < n" -> "Increment i" [label="Yes"];
+    "Check if i < n" -> "Return fib[n]" [label="No"];
+    "Increment i" -> "Compute fib[i] = fib[i-1] + fib[i-2]";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return fib[n]" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+
