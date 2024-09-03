@@ -1,0 +1,20 @@
+digraph Dijkstra {
+    node [shape=box, style="filled", color=lightyellow];
+
+    Start -> "Initialize distances to infinity, source to 0";
+    "Initialize distances to infinity, source to 0" -> "Initialize priority queue with source node";
+    "Initialize priority queue with source node" -> "While the queue is not empty";
+    "While the queue is not empty" -> "Extract node u with minimum distance";
+    "Extract node u with minimum distance" -> "For each neighbor v of u";
+    "For each neighbor v of u" -> "Calculate new distance: dist[u] + weight(u, v)";
+    "Calculate new distance: dist[u] + weight(u, v)" -> "If new distance < dist[v]";
+    "If new distance < dist[v]" -> "Update dist[v] and add v to the queue" [label="Yes"];
+    "Update dist[v] and add v to the queue" -> "Continue loop";
+    "If new distance < dist[v]" -> "Continue loop" [label="No"];
+    "Continue loop" -> "End loop";
+    "End loop" -> "Return shortest distances";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return shortest distances" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

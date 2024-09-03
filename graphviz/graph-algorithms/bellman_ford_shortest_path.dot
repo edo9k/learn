@@ -1,0 +1,18 @@
+digraph BellmanFord {
+    node [shape=box, style="filled", color=lightpink];
+
+    Start -> "Initialize distances to infinity, source to 0";
+    "Initialize distances to infinity, source to 0" -> "Repeat |V|-1 times";
+    "Repeat |V|-1 times" -> "For each edge (u, v)";
+    "For each edge (u, v)" -> "If dist[u] + weight(u, v) < dist[v]";
+    "If dist[u] + weight(u, v) < dist[v]" -> "Update dist[v]" [label="Yes"];
+    "Update dist[v]" -> "Continue loop";
+    "If dist[u] + weight(u, v) < dist[v]" -> "Continue loop" [label="No"];
+    "Continue loop" -> "End loop";
+    "End loop" -> "Check for negative-weight cycles";
+    "Check for negative-weight cycles" -> "Return distances or indicate a negative cycle";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return distances or indicate a negative cycle" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+
