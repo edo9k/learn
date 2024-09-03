@@ -1,0 +1,17 @@
+digraph ExponentiationBySquaring {
+    node [shape=box, style="filled", color=lightcoral];
+
+    Start -> "If exponent is 0, return 1";
+    "If exponent is 0, return 1" -> "Return 1" [label="Yes"];
+    "If exponent is 0, return 1" -> "If exponent is even" [label="No"];
+    "If exponent is even" -> "Compute half_power = (base^(exponent/2))";
+    "Compute half_power = (base^(exponent/2))" -> "Return half_power * half_power" [label="Yes"];
+    "If exponent is even" -> "Compute half_power = (base^((exponent-1)/2))" [label="No"];
+    "Compute half_power = (base^((exponent-1)/2))" -> "Return base * half_power * half_power";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return 1" [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return half_power * half_power" [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return base * half_power * half_power" [shape=circle, label="", width=.15, style=filled, color=black];
+}
+

@@ -1,0 +1,13 @@
+digraph Strassen {
+    node [shape=box, style="filled", color=lightyellow];
+
+    Start -> "If the matrix size is 1, perform simple multiplication";
+    "If the matrix size is 1, perform simple multiplication" -> "Return result" [label="Yes"];
+    "If the matrix size is 1, perform simple multiplication" -> "Divide matrices into submatrices" [label="No"];
+    "Divide matrices into submatrices" -> "Compute 7 multiplications recursively";
+    "Compute 7 multiplications recursively" -> "Combine results to form the product matrix";
+    "Combine results to form the product matrix" -> "Return result";
+
+    Start [shape=circle, label="", width=.15, style=filled, color=black];
+    "Return result" [shape=circle, label="", width=.15, style=filled, color=black];
+}
