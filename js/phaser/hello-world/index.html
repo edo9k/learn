@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Phaser Hello World</title>
+    <style>
+      * {
+        background-color: black;
+      }
+      .shimmer {
+        display: inline-block;
+        animation: shimmer 1.5s infinite;
+        font-size: 64px;
+        font-family: Arial;
+      }
+
+      @keyframes shimmer {
+        0% {
+          color: #ffffff;
+        }
+        50% {
+          color: #ff00ff;
+        }
+        100% {
+          color: #ffffff;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <script src="game.js" defer></script>
+  </head>
+  <body></body>
+</html>
