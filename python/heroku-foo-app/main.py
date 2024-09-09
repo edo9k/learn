@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return """
-        <strong>Hello, World!</strong>
+        <strong style="font-size:64pt">Hello, World!</strong>
         <sub>with Flask &amp; Heroku</sub>
     """
 
