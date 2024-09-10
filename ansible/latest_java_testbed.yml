@@ -1,32 +1,32 @@
 ---
-- hosts: localhost
-  become: yes
+- name: Build and run a Java container with Podman
+  hosts: localhost
   tasks:
-    - name: Install Podman if not present
-      apt:
-        name: podman
-        state: present
-        update_cache: yes
+    - name: Generate a random number
+      set_fact:
+        random_number: "{{ 9999 | random }}"
 
-    - name: Pull the latest OpenJDK image using Podman
-      ansible.builtin.command:
-        cmd: podman pull docker.io/library/openjdk:latest
-      register: podman_pull_result
+    - name: Remove existing container if it exists
+      command: >
+        podman rm -f java_test_container_{{ random_number }}
+      ignore_errors: yes
+      failed_when: false
 
-    - name: Ensure the image is pulled
-      debug:
-        msg: "Pulled image: {{ podman_pull_result.stdout }}"
+    - name: Check if Podman network exists
+      command: >
+        podman network inspect podman
+      register: network_inspect
+      ignore_errors: yes
 
-    - name: Run Java container with Podman and mount the test-code directory
-      ansible.builtin.command:
-        cmd: podman run -d --name java_test_container -v /home/user/test-code:/usr/src/myapp docker.io/library/openjdk:latest sleep infinity
-      register: podman_run_result
+    - name: Create Podman network if it does not exist
+      command: >
+        podman network create podman
+      when: network_inspect.rc != 0
 
-    - name: Ensure the container is running
-      debug:
-        msg: "Container running: {{ podman_run_result.stdout }}"
-
-    - name: Display running Podman containers
-      ansible.builtin.command:
-        cmd: podman ps
+    - name: Run Java container interactively with Podman and mount the test-code directory
+      command: >
+        podman run -it --name java_test_container_{{ random_number }}
+        -v /home/edo9k/Documentos/repos/learn:/usr/src/myapp
+        docker.io/library/openjdk:latest
+        /bin/bash
 
