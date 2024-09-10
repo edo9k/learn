@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Install Podman if not present
+      apt:
+        name: podman
+        state: present
+        update_cache: yes
+
+    - name: Pull the latest OpenJDK image using Podman
+      ansible.builtin.command:
+        cmd: podman pull docker.io/library/openjdk:latest
+      register: podman_pull_result
+
+    - name: Ensure the image is pulled
+      debug:
+        msg: "Pulled image: {{ podman_pull_result.stdout }}"
+
+    - name: Run Java container with Podman and mount the test-code directory
+      ansible.builtin.command:
+        cmd: podman run -d --name java_test_container -v /home/user/test-code:/usr/src/myapp docker.io/library/openjdk:latest sleep infinity
+      register: podman_run_result
+
+    - name: Ensure the container is running
+      debug:
+        msg: "Container running: {{ podman_run_result.stdout }}"
+
+    - name: Display running Podman containers
+      ansible.builtin.command:
+        cmd: podman ps
+
