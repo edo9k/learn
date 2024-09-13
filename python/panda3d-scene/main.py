@@ -3,6 +3,7 @@ from direct.task import Task
 from panda3d.core import Vec3
 from math import sin, cos, radians
 
+
 class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
@@ -25,9 +26,15 @@ class MyApp(ShowBase):
     def load_models(self):
         # Load the orange_cake.obj model and place it several times in the scene
         for i in range(5):
-            cake = self.loader.loadModel("models/orange_cake.obj")
+            cake = self.loader.loadModel("models/model.obj")
             cake.setPos(i * 3, 0, 0)  # Spread the cakes along the X-axis
             cake.setScale(1, 1, 1)
+
+
+           # Apply a simple color if materials are not loading
+            color = (1, 0.647, 0)  # Orange color
+            cake.setColor(*color)  # Set color directly
+
             cake.reparentTo(self.render)
 
     def camera_init(self):
@@ -48,8 +55,12 @@ class MyApp(ShowBase):
             y = md.getY()
 
             # Rotate the camera based on mouse movement
-            self.heading -= (x - self.win.getProperties().getXSize() // 2) * self.mouseSensitivity
-            self.pitch -= (y - self.win.getProperties().getYSize() // 2) * self.mouseSensitivity
+            self.heading -= (
+                x - self.win.getProperties().getXSize() // 2
+            ) * self.mouseSensitivity
+            self.pitch -= (
+                y - self.win.getProperties().getYSize() // 2
+            ) * self.mouseSensitivity
 
             # Clamp the pitch
             self.pitch = max(-90, min(90, self.pitch))
@@ -58,7 +69,11 @@ class MyApp(ShowBase):
             self.camera.setHpr(self.heading, self.pitch, 0)
 
             # Reset the mouse position to the center of the window
-            self.win.movePointer(0, self.win.getProperties().getXSize() // 2, self.win.getProperties().getYSize() // 2)
+            self.win.movePointer(
+                0,
+                self.win.getProperties().getXSize() // 2,
+                self.win.getProperties().getYSize() // 2,
+            )
 
         # Camera movement controls (WASD keys)
         movement_speed = 0.1
@@ -73,6 +88,9 @@ class MyApp(ShowBase):
         if self.keyboard_map["d"]:
             direction += self.camera.getQuat().getRight()
 
+        if self.keyboard_map["q"]:
+            exit(0)
+
         # Move the camera
         self.camera.setPos(self.camera.getPos() + direction * movement_speed)
 
@@ -80,7 +98,7 @@ class MyApp(ShowBase):
 
     def setup_keyboard(self):
         # Initialize a keyboard map to track key presses
-        self.keyboard_map = {"w": False, "s": False, "a": False, "d": False}
+        self.keyboard_map = {"w": False, "s": False, "a": False, "d": False, "q": False}
 
         # Set up the key events
         self.accept("w", self.update_keyboard_map, ["w", True])
@@ -92,8 +110,12 @@ class MyApp(ShowBase):
         self.accept("d", self.update_keyboard_map, ["d", True])
         self.accept("d-up", self.update_keyboard_map, ["d", False])
 
+        # quick quitting while playing with things
+        self.accept("q", self.update_keyboard_map, ["q", True])
+
     def update_keyboard_map(self, key, value):
         self.keyboard_map[key] = value
+
 
 app = MyApp()
 app.run()
