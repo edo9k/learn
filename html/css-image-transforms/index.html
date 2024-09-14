@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transform Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Example 1: 3D Rotation with Perspective */
+        .rotate-3d img {
+            transform: rotateY(45deg) rotateX(30deg);
+            perspective: 500px;
+        }
+
+        /* Example 2: Zoom In on Hover */
+        .zoom img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Example 3: Flip Effect */
+        .flip img:hover {
+            transform: rotateY(180deg);
+            transform-style: preserve-3d;
+        }
+
+        /* Example 4: Skew Animation */
+        .skew img:hover {
+            transform: skew(20deg, 10deg);
+        }
+
+        /* Example 5: Rotating and Scaling on Hover */
+        .rotate-scale img:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* Example 6: 3D Hover Pop-Out */
+        .pop-out img {
+            transform: translateZ(0);
+        }
+
+        .pop-out img:hover {
+            transform: translateZ(50px) rotateX(10deg) rotateY(10deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Example 1: 3D Rotation with Perspective -->
+    <div class="container rotate-3d">
+        <h3>3D Rotation</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+
+    <!-- Example 2: Zoom In on Hover -->
+    <div class="container zoom">
+        <h3>Zoom In</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+
+    <!-- Example 3: Flip Effect -->
+    <div class="container flip">
+        <h3>Flip Effect</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+
+    <!-- Example 4: Skew Animation -->
+    <div class="container skew">
+        <h3>Skew Animation</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+
+    <!-- Example 5: Rotating and Scaling on Hover -->
+    <div class="container rotate-scale">
+        <h3>Rotate & Scale</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+
+    <!-- Example 6: 3D Hover Pop-Out -->
+    <div class="container pop-out">
+        <h3>3D Pop-Out</h3>
+        <img src="image.jpg" alt="Example Image">
+    </div>
+</body>
+</html>
+
