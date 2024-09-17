@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thomas Anderson</title>
+
+    <!-- Add Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --default-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2R6cWZ3OHBzcHAxeXA3b2lndW82NWg5dmsydWVlaG1jcnFna2RmbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WoD6JZnwap6s8/giphy.gif");
+        --bio-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm13YTRza25xaW9wbjgwanNjMWtvdm16dTQwdnpmd3d0OGkwdmJreSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TQmVlE6Kmg69q/giphy.gif");
+        --linkedin-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWs0dmF5OWExMzc5Z3Y2MzBmZ3YyYWllbHh6bzM5YTJlMDl3NHA3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PpTYXF9cSgn2yCiIf/giphy.gif");
+        --github-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnY4bnR6YmUyajFra2loYmV6eWMxZzVyOXJ2cTRobTdodnQ1YnFsbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NytMLKyiaIh6VH9SPm/giphy.gif");
+        --projects-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2t5aGhzMHk3bWE3eHY0czBwaHE4eXF5Z3pyenJzOHcybmJ3aXk0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TgI82cyv2haUubdAzK/giphy.gif");
+        --contact-bg: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTV5cjZ2dTVmZW1ycHV5Z2xwcGxxcmV0cGZyMHdpcW5wNGxzbXF5YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KpOqvmCFdNMhF0pQb7/giphy.gif");
+      }
+      body {
+        font-family: "Share Tech Mono", monospace;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: var(--default-bg) no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        transition: background 0.5s ease;
+      }
+
+      h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: #32cd32;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        border-radius: 5px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      }
+
+      nav {
+        display: flex;
+        gap: 2em;
+      }
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2em;
+        position: relative;
+        transition:
+          color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background-color: #32cd32;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: right;
+      }
+
+      a:hover {
+        color: #32cd32;
+        transform: scale(1.05);
+      }
+
+      a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 10px;
+        font-size: 0.8em;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Thomas Anderson</h1>
+
+    <nav>
+      <a href="#bio" data-bg="var(--bio-bg)">Bio</a>
+      <a href="https://www.linkedin.com" data-bg="var(--linkedin-bg)"
+        >LinkedIn</a
+      >
+      <a href="https://github.com" data-bg="var(--github-bg)">GitHub</a>
+      <a href="#projects" data-bg="var(--projects-bg)">Projects</a>
+      <a href="#contact" data-bg="var(--contact-bg)">Contact</a>
+    </nav>
+
+    <footer>"Welcome to the real world."</footer>
+
+    <script>
+      const links = document.querySelectorAll("nav a");
+
+      links.forEach((link) => {
+        link.addEventListener("mouseover", () => {
+          document.body.style.background = `${link.getAttribute("data-bg")} no-repeat center center fixed`;
+          document.body.style.backgroundSize = "cover";
+        });
+        link.addEventListener("mouseout", () => {
+          document.body.style.background =
+            "var(--default-bg) no-repeat center center fixed"; // Default background
+          document.body.style.backgroundSize = "cover";
+        });
+      });
+    </script>
+  </body>
+</html>
