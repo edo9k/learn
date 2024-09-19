@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.coverflow {
+  display: flex;
+  perspective: 1000px;
+  width: 80%;
+  position: relative;
+  justify-content: center;
+  overflow: visible;
+}
+
+.book {
+  width: 120px;
+  height: 180px;
+  margin: 0 15px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease, z-index 0.5s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow for non-active books */
+  z-index: 1;
+}
+
+.book img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center the active book with no rotation and overflow visible */
+.active {
+  transform: scale(1.2) rotateY(0deg); /* The center book zooms in slightly */
+  z-index: 10;
+  overflow: visible; /* Allow the zoomed-in image to overflow */
+}
+
+.book:not(.active) {
+  transform: scale(0.9);
+  filter: blur(1px);
+  z-index: 1;
+  overflow: hidden; /* Keep overflow hidden for non-active books */
+}
+
+/* Adjust the positioning for the coverflow effect */
+
+/* Left-side books rotate and move */
+.left {
+  transform: rotateY(-40deg) translateX(-150px); /* Tilt and shift to the left */
+}
+
+/* Right-side books rotate and move */
+.right {
+  transform: rotateY(40deg) translateX(150px); /* Tilt and shift to the right */
+}
