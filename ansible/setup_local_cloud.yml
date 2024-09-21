@@ -1,0 +1,68 @@
+---
+- name: Setup environment for Terraform, LocalStack, and Minikube with Podman
+  hosts: localhost
+  become: yes
+  tasks:
+
+    # Install dependencies
+    - name: Install system dependencies
+      apt:
+        name:
+          - python3-pip
+          - unzip
+          - curl
+          - podman
+          - conntrack
+        state: present
+        update_cache: yes
+
+    # Install Terraform
+    - name: Download Terraform binary
+      get_url:
+        url: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+        dest: /tmp/terraform.zip
+
+    - name: Unzip Terraform binary
+      unarchive:
+        src: /tmp/terraform.zip
+        dest: /usr/local/bin/
+        remote_src: yes
+
+    - name: Ensure Terraform is executable
+      file:
+        path: /usr/local/bin/terraform
+        mode: '0755'
+
+    # Install LocalStack (using Podman)
+    - name: Pull LocalStack container with Podman
+      command: podman pull localstack/localstack:latest
+
+    - name: Start LocalStack container with Podman
+      command: podman run -d -p 4566:4566 --name localstack localstack/localstack
+
+    # Install Minikube
+    - name: Download Minikube
+      get_url:
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+        dest: /usr/local/bin/minikube
+        mode: '0755'
+
+    # Verify installation of Minikube
+    - name: Start Minikube (using Podman driver)
+      command: minikube start --driver=podman
+      register: minikube_start
+      ignore_errors: yes
+
+    - name: Minikube start failed, install conntrack
+      apt:
+        name: conntrack
+        state: present
+      when: "'conntrack' in minikube_start.stderr"
+
+    - name: Restart Minikube after installing conntrack
+      command: minikube start --driver=podman
+      when: "'conntrack' in minikube_start.stderr"
+
+  vars:
+    terraform_version: "1.5.7"  # Adjust version as needed
+
