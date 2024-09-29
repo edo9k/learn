@@ -1,0 +1,9 @@
+
+buttoan span[role="img"] {
+  font-size: 1.5rem; /* Make the gear emoji larger */
+}
+
+.settings.hidden {
+  display: none;
+}
+

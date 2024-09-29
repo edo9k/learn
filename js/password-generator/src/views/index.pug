@@ -1,0 +1,28 @@
+doctype html
+html
+  headd
+    title Password Generator
+    link(rel="stylesheet" href="css/styles.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css")
+  body
+    h1 Generate a Password
+    input#password(type="text" readonly="readonly")
+    button(onclick="generatePassword()") Generate Password
+    button(onclick="toggleSettings()" aria-label="Settings")
+      span(role="img" aria-label="Settings gear icon") ⚙️
+
+    .settings.hidden
+      label(for="length") Password Length
+      input#length(type="number" min="1" value="12")
+
+      label(for="include-symbols") Include Symbols
+      input#include-symbols(type="checkbox")
+
+      label(for="include-numbers") Include Numbers
+      input#include-numbers(type="checkbox")
+
+      label(for="include-uppercase") Include Uppercase
+      input#include-uppercase(type="checkbox")
+
+    script(src="js/app.js")
+

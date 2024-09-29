@@ -1,0 +1,21 @@
+{
+  "name": "password-generator-app",
+  "version": "1.0.0",
+  "description": "A simple password generator app using PWA and TWA",
+  "main": "index.js",
+  "scripts": {
+    "build": "pug src/views/index.pug --out public/",
+    "watch": "nodemon -e pug -x \"npm run build\"",
+    "start": "live-server public",
+    "dev": "concurrently \"npm run watch\" \"npm run start\""
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "nodemon": "^2.0.22",
+    "concurrently": "^6.2.1"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
+
