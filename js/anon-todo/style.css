@@ -1,0 +1,29 @@
+
+body {
+  font-family: sans-serif;
+  color: white;
+  background-color: black;
+}
+
+#todo-list li {
+  list-style: none;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#todo-list li.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+#shred-button {
+  background-color: #f08080; /* Redish color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
