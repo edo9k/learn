@@ -1,6 +1,6 @@
 #!/bin/bash
 
-whatsappvideo() {
+function whatsappvideo {
     # Define the video capture directory (localized in Portuguese)
     capture_dir="$(xdg-user-dir VIDEOS)/Gravações de tela"
 

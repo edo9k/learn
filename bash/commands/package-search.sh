@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function fuckthis() {
+function fuckthis {
   if [ "$1" == "search" ]; then
 
     package_name="${*:2}"

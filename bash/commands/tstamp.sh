@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pytimestamp () {
-  if [ -z "$1"]; then 
+  if [ -z "$1" ]; then 
     echo "Usage: pytimestamp <timestamp>"
     return 1
   fi

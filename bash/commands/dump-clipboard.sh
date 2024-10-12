@@ -2,7 +2,7 @@
 
 # requires the `xclip` command
 
-dump_clipboard() { 
+function dump_clipboard { 
     if [ -z "$1" ]; then
         echo "Usage: save_clipboard_to_file <filename>"
         return 1
