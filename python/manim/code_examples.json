@@ -1,0 +1,25 @@
+{
+    "Python": "print(\"Hello, World!\")",
+    "JavaScript": "console.log(\"Hello, World!\");",
+    "PHP": "<?php\necho \"Hello, World!\";\n?>",
+    "C#": "using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine(\"Hello, World!\");\n    }\n}",
+    "Java": "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+    "Go": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello, World!\")\n}",
+    "Rust": "fn main() {\n    println!(\"Hello, World!\");\n}",
+    "Zig": "const std = @import(\"std\");\n\npub fn main() void {\n    std.debug.print(\"Hello, World!\\n\", .{});\n}",
+    "APL": "\"Hello, World!\"",
+    "COBOL": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. HelloWorld.\n       PROCEDURE DIVISION.\n           DISPLAY 'Hello, World!'.\n           STOP RUN.",
+    "Lisp": "(format t \"Hello, World!\")",
+    "SML": "val _ = print \"Hello, World!\\n\"",
+    "OCaml": "let () = print_endline \"Hello, World!\"",
+    "Haskell": "main = putStrLn \"Hello, World!\"",
+    "nasm": "section .data\n    msg db 'Hello, World!',0\n\nsection .text\n    global _start\n\n_start:\n    mov rax, 1\n    mov rdi, 1\n    mov rsi, msg\n    mov rdx, 13\n    syscall\n    mov rax, 60\n    xor rdi, rdi\n    syscall",
+    "nasm": "    .section .data\nmsg:\n    .asciz \"Hello, World!\"\n    .section .text\n    .global _start\n_start:\n    ldr r0, =msg\n    bl printf\n    mov r7, #1\n    svc 0",
+    "Pascal": "program HelloWorld;\nbegin\n    WriteLn('Hello, World!');\nend.",
+    "C": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
+    "C++": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, World!\" << std::endl;\n    return 0;\n}",
+    "Lua": "print(\"Hello, World!\")",
+    "Bash": "echo \"Hello, World!\"",
+    "PowerShell": "Write-Host \"Hello, World!\""
+}
+
