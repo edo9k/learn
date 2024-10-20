@@ -1,0 +1,11 @@
+build==1.2.2.post1
+cffi==1.17.1
+click==8.1.7
+numpy==2.1.2
+packaging==24.1
+pip-tools==7.4.1
+pycparser==2.22
+pyproject_hooks==1.2.0
+setuptools==75.2.0
+sounddevice==0.5.1
+wheel==0.44.0
