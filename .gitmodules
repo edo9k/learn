@@ -1,0 +1,7 @@
+[submodule "cpp/web-store/vendor/drogon"]
+	path = cpp/web-store/vendor/drogon
+	url = https://github.com/drogonframework/drogon.git
+
+[submodule "cpp/web-store/vendor/Bcrypt"]
+	path = cpp/web-store/vendor/Bcrypt
+	url = https://github.com/hilch/Bcrypt.cpp

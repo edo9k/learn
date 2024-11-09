@@ -1,0 +1,10 @@
+{
+  "db_clients": [
+    {
+      "rdbms": "sqlite3",
+      "filename": "my_database.db",
+      "name": "default"
+    }
+  ]
+}
+
