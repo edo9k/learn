@@ -1,0 +1,14 @@
+# Dockerfile.nogil
+FROM python-builder-base as builder
+
+WORKDIR /usr/src/cpython
+RUN git clone --depth=1 --branch 3.13 https://github.com/python/cpython . && \
+    ./configure --prefix=/opt/python-nogil --disable-gil && \
+    make -j$(nproc) && make install
+
+FROM debian:bookworm-slim
+COPY --from=builder /opt/python-nogil /opt/python-nogil
+COPY benchmark.py /benchmark.py
+ENV PATH="/opt/python-nogil/bin:$PATH"
+CMD ["python3", "/benchmark.py"]
+

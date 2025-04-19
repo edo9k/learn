@@ -1,0 +1,14 @@
+# Dockerfile.withgil
+FROM python-builder-base as builder
+
+WORKDIR /usr/src/cpython
+RUN git clone --depth=1 --branch 3.13 https://github.com/python/cpython . && \
+    ./configure --prefix=/opt/python-gil && \
+    make -j$(nproc) && make install
+
+FROM debian:bookworm-slim
+COPY --from=builder /opt/python-gil /opt/python-gil
+COPY benchmark.py /benchmark.py
+ENV PATH="/opt/python-gil/bin:$PATH"
+CMD ["python3", "/benchmark.py"]
+
