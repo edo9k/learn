@@ -1,0 +1,27 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python 3.10 and dependencies
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3.10-venv \
+    python3.10-distutils \
+    curl \
+    git \
+    ca-certificates \
+    && ln -s /usr/bin/python3.10 /usr/bin/python \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Expose Dash port
+EXPOSE 8050
+
+# Run the Dash app
+CMD ["python", "main.py"]
